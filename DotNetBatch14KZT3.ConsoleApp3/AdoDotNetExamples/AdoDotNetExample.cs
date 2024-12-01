@@ -12,7 +12,7 @@ public class AdoDotNetExample
 {
     private readonly SqlConnectionStringBuilder _connBuilder = new SqlConnectionStringBuilder()
     {
-        DataSource = "DESKTOP-C0JBC3O\\MSSQLSERVER2022",
+        DataSource = ".",
         InitialCatalog = "test_db",
         UserID = "sa",
         Password = "Kyawzin@123",

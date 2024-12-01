@@ -11,7 +11,7 @@ public static class AppSettings
 {
     public static SqlConnectionStringBuilder connBuilder { get; } = new SqlConnectionStringBuilder()
     {
-        DataSource = "DESKTOP-C0JBC3O\\MSSQLSERVER2022",
+        DataSource = ".",
         InitialCatalog = "test_db",
         UserID = "sa",
         Password = "Kyawzin@123",

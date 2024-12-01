@@ -16,6 +16,7 @@ public class AppDbContext : DbContext
         if (!optionsBuilder.IsConfigured)
         {
             optionsBuilder.UseSqlServer(AppSettings.connBuilder.ConnectionString);
+            optionsBuilder.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
         }
     }
     public DbSet<TblBlog> Blogs { get; set; }

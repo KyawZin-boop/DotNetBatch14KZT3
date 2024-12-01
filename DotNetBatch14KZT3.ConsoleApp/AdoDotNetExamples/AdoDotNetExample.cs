@@ -13,7 +13,7 @@ public class AdoDotNetExample
 {
     private readonly SqlConnectionStringBuilder _connBuilder = new SqlConnectionStringBuilder()
     {
-        DataSource = "DESKTOP-C0JBC3O\\MSSQLSERVER2022",
+        DataSource = ".",
         InitialCatalog = "test_db",
         UserID = "sa",
         Password = "Kyawzin@123",
@@ -90,9 +90,9 @@ public class AdoDotNetExample
     public void Update(string id, string title, string author, string content)
     {
         string query = @$"Update [dbo].[tbl_blog] 
-                                SET [blog_title]='updatedTitle',
-                                    [blog_author]='updatedAuthor',
-                                    [blog_content]='updatedContent'
+                                SET [blog_title]='{title}',
+                                    [blog_author]='{author}',
+                                    [blog_content]='{content}'
                                 where blog_id='{id}'"; ;
 
         SqlConnection con = new SqlConnection (_connBuilder.ConnectionString);

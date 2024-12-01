@@ -4,10 +4,10 @@ using DotNetBatch14KZT3.ConsoleApp.EFCoreExamples;
 
 //AdoDotNetExample adoDotNetExample = new AdoDotNetExample();
 //adoDotNetExample.Read();
-//adoDotNetExample.Edit("BF235905-D8BC-4A1D-A6C3-B797F924556D");
+//adoDotNetExample.Edit("45345245-7gf5");
 //adoDotNetExample.Create("newAdoTitle3", "newAdoAuthor3", "newAdoContent3");
-//adoDotNetExample.Update("BF235905-D8BC-4A1D-A6C3-B797F924556D", "updateAdoTitle3", "updateAdoAuthor3", "updateAdoContent3");
-//adoDotNetExample.Delete("FAEDD0AE-6F4E-4CC9-9535-2D0101E4E869");
+//adoDotNetExample.Update("45345245-7gf5", "updateAdoTitle3", "updateAdoAuthor3", "updateAdoContent3");
+//adoDotNetExample.Delete("45345245-7gf5");
 
 //DapperExample dapperExample = new DapperExample();
 //dapperExample.Read();
@@ -18,7 +18,7 @@ using DotNetBatch14KZT3.ConsoleApp.EFCoreExamples;
 
 EFCoreExample eFCoreExample = new EFCoreExample();
 eFCoreExample.Read();
-//eFCoreExample.Edit("2502df30-457b-4f86-9713-c1c186fa0cb1");
-//eFCoreExample.Create("newEFCoreTitle3", "newEFCoreAuthor3", "newEFCoreContent3");
-//eFCoreExample.Update("2502df30-457b-4f86-9713-c1c186fa0cb1", "updateEFCoreTitle3", "updateEFCoreAuthor3", "updateEFCoreContent3");
-//eFCoreExample.Delete("D4B0DD57-4B54-4F7C-A3F6-D9D55CD3470F");
+eFCoreExample.Edit("EC87DA67-3D2A-4CED-9BFB-B5752BF9C663");
+eFCoreExample.Create("newEFCoreTitle3", "newEFCoreAuthor3", "newEFCoreContent3");
+eFCoreExample.Update("EC87DA67-3D2A-4CED-9BFB-B5752BF9C663", "updateEFCoreTitle3", "updateEFCoreAuthor3", "updateEFCoreContent3");
+eFCoreExample.Delete("1e76f8d4-e5e1-48e3-83c0-bbaf86d0a70c");
