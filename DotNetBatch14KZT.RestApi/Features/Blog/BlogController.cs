@@ -44,7 +44,7 @@ public class BlogController : ControllerBase
     }
 
     [HttpPut("{id}")]
-    public IActionResult UpdateBlog(string id, BlogModel requestModel)
+    public IActionResult UpsertBlog(string id, BlogModel requestModel)
     {
         requestModel.blog_id = id;
 
@@ -58,7 +58,7 @@ public class BlogController : ControllerBase
     }
 
     [HttpPatch("{id}")]
-    public IActionResult PatchBlog(string id, BlogModel requestModel)
+    public IActionResult UpdateBlog(string id, BlogModel requestModel)
     {
         requestModel.blog_id = id;
 
