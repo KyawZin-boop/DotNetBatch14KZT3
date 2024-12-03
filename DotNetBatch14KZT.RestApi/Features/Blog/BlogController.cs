@@ -75,7 +75,7 @@ public class BlogController : ControllerBase
     public IActionResult DeleteBlog(string id)
     {
         var model = _blogService.DeleteBlog(id);
-        if (model is null)
+        if (!model.IsSuccess)
         {
             return BadRequest(model);
         }

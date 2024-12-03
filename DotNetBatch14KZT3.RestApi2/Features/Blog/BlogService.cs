@@ -1,11 +1,12 @@
-﻿using System.Data;
+﻿using Microsoft.AspNetCore.SignalR;
 using Microsoft.Data.SqlClient;
+using System.Data;
 
-namespace DotNetBatch14KZT.RestApi.Features.Blog;
+namespace DotNetBatch14KZT3.RestApi2.Features.Blog;
 
 public class BlogService : IBlogService
 {
-    private readonly SqlConnectionStringBuilder _connectionBuilder = new SqlConnectionStringBuilder()
+    private readonly SqlConnectionStringBuilder _conntectionBuilder = new SqlConnectionStringBuilder()
     {
         DataSource = ".",
         InitialCatalog = "test_db",
@@ -16,10 +17,10 @@ public class BlogService : IBlogService
 
     public List<BlogModel> GetBlogs()
     {
-        SqlConnection con = new SqlConnection(_connectionBuilder.ConnectionString);
+        SqlConnection con = new SqlConnection(_conntectionBuilder.ConnectionString);
         con.Open();
 
-        SqlCommand cmd = new SqlCommand("Select * from tbl_blog", con);
+        SqlCommand cmd = new SqlCommand("select * from tbl_blog with (nolock)", con);
         SqlDataAdapter adapter = new SqlDataAdapter(cmd);
         DataTable dt = new DataTable();
         adapter.Fill(dt);
@@ -30,10 +31,10 @@ public class BlogService : IBlogService
         foreach (DataRow dr in dt.Rows)
         {
             BlogModel item = new BlogModel();
-            item.blog_id = dr["blog_id"].ToString();
-            item.blog_title = dr["blog_title"].ToString();
-            item.blog_author = dr["blog_author"].ToString();
-            item.blog_content = dr["blog_content"].ToString();
+            item.blog_id = dr["blog_id"].ToString()!;
+            item.blog_title = dr["blog_title"].ToString()!;
+            item.blog_author = dr["blog_author"].ToString()!;
+            item.blog_content = dr["blog_content"].ToString()!;
 
             lst.Add(item);
         }
@@ -43,10 +44,10 @@ public class BlogService : IBlogService
 
     public BlogModel GetBlog(string id)
     {
-        SqlConnection con = new SqlConnection(_connectionBuilder.ConnectionString);
+        SqlConnection con = new SqlConnection(_conntectionBuilder.ConnectionString);
         con.Open();
 
-        SqlCommand cmd = new SqlCommand("select * from tbl_blog where blog_id=@blog_id;", con);
+        SqlCommand cmd = new SqlCommand("Select * from tbl_blog where blog_id=@blog_id", con);
         cmd.Parameters.AddWithValue("@blog_id", id);
         SqlDataAdapter adapter = new SqlDataAdapter(cmd);
         DataTable dt = new DataTable();
@@ -54,17 +55,17 @@ public class BlogService : IBlogService
 
         con.Close();
 
-        if (dt.Rows.Count == 0) return null!;
+        if (dt.Rows.Count == 0) return null;
 
-        DataRow row = dt.Rows[0];
+        DataRow dr = dt.Rows[0];
 
-        BlogModel item = new BlogModel();
-        item.blog_id = row["blog_id"].ToString()!; //use ! to accept null
-        item.blog_title = row["blog_title"].ToString()!;
-        item.blog_author = row["blog_author"].ToString()!;
-        item.blog_content = row["blog_content"].ToString()!;
+        BlogModel model = new BlogModel();
+        model.blog_id = dr["blog_id"].ToString()!;
+        model.blog_title = dr["blog_title"].ToString()!;
+        model.blog_author = dr["blog_author"].ToString()!;
+        model.blog_content = dr["blog_content"].ToString()!;
 
-        return item;
+        return model;
     }
 
     public BlogResponseModel CreateBlog(BlogModel requestModel)
@@ -73,18 +74,18 @@ public class BlogService : IBlogService
                             ([blog_title],[blog_author],[blog_content])
                        Values (@blog_title, @blog_author, @blog_content)";
 
-        SqlConnection con = new SqlConnection(_connectionBuilder.ConnectionString);
+        SqlConnection con = new SqlConnection(_conntectionBuilder.ConnectionString);
         con.Open();
 
         SqlCommand cmd = new SqlCommand(query, con);
-        cmd.Parameters.AddWithValue("@blog_title", requestModel.blog_title);
-        cmd.Parameters.AddWithValue("@blog_author", requestModel.blog_author);
-        cmd.Parameters.AddWithValue("@blog_content", requestModel.blog_content);
-        int result = cmd.ExecuteNonQuery();
+        cmd.Parameters.AddWithValue("blog_title", requestModel.blog_title);
+        cmd.Parameters.AddWithValue("blog_author", requestModel.blog_author);
+        cmd.Parameters.AddWithValue("blog_content", requestModel.blog_content);
+        var result = cmd.ExecuteNonQuery();
 
         con.Close();
 
-        string message = result > 0 ? "Saving Success." : "Saving Fail!";
+        string message = result > 0 ? "Create Success." : "Create Fail!";
         BlogResponseModel model = new BlogResponseModel();
         model.IsSuccess = result > 0;
         model.Message = message;
@@ -94,13 +95,13 @@ public class BlogService : IBlogService
 
     public BlogResponseModel UpdateBlog(BlogModel requestModel)
     {
-        var item = GetBlog(requestModel.blog_id!);
+        var item = GetBlog(requestModel.blog_id);
         if (item is null)
         {
             return new BlogResponseModel
             {
                 IsSuccess = false,
-                Message = "No data found."
+                Message = "No data found!",
             };
         }
 
@@ -123,7 +124,7 @@ public class BlogService : IBlogService
                             [blog_content] = @blog_content
                         WHERE blog_id = @blog_id";
 
-        SqlConnection con = new SqlConnection(_connectionBuilder.ConnectionString);
+        SqlConnection con = new SqlConnection(_conntectionBuilder.ConnectionString);
         con.Open();
 
         SqlCommand cmd = new SqlCommand(query, con);
@@ -141,14 +142,13 @@ public class BlogService : IBlogService
         model.Message = message;
 
         return model;
-
     }
 
     public BlogResponseModel UpsertBlog(BlogModel requestModel)
     {
         BlogResponseModel model = new BlogResponseModel();
+        var item = GetBlog(requestModel.blog_id);
 
-        var item = GetBlog(requestModel.blog_id!);
         if (item is not null)
         {
             string query = @"UPDATE [dbo].[tbl_blog]
@@ -157,10 +157,8 @@ public class BlogService : IBlogService
                                     [blog_content]='@blog_content'
                                 WHERE blog_id='@blog_id'";
 
-            SqlConnection con = new SqlConnection(_connectionBuilder.ConnectionString);
+            SqlConnection con = new SqlConnection(_conntectionBuilder.ConnectionString);
             con.Open();
-
-            #region Update Database
 
             SqlCommand cmd = new SqlCommand(query, con);
             cmd.Parameters.AddWithValue("@blog_id", requestModel.blog_id);
@@ -171,11 +169,9 @@ public class BlogService : IBlogService
 
             con.Close();
 
-            #endregion 
-
             string message = result > 0 ? "Update Success." : "Update Fail!";
 
-            model.IsSuccess = true;
+            model.IsSuccess = result > 0;
             model.Message = message;
         }
         else if (item is null)
@@ -188,7 +184,7 @@ public class BlogService : IBlogService
 
     public BlogResponseModel DeleteBlog(string id)
     {
-        SqlConnection con = new SqlConnection(_connectionBuilder.ConnectionString);
+        SqlConnection con = new SqlConnection(_conntectionBuilder.ConnectionString);
         con.Open();
 
         SqlCommand cmd = new SqlCommand("Delete from [dbo].[tbl_blog] where blog_id = @blog_id", con);
