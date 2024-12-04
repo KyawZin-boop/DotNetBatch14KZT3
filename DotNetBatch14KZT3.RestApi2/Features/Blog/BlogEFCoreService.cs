@@ -1,7 +1,7 @@
 ﻿
 using Microsoft.EntityFrameworkCore;
 
-namespace DotNetBatch14KZT.RestApi.Features.Blog;
+namespace DotNetBatch14KZT3.RestApi2.Features.Blog;
 
 public class BlogEFCoreService : IBlogService
 {
@@ -11,7 +11,6 @@ public class BlogEFCoreService : IBlogService
     {
         _db = new AppDbContext();
     }
-
     public BlogResponseModel CreateBlog(BlogModel requestModel)
     {
         _db.Add(requestModel);
@@ -21,6 +20,7 @@ public class BlogEFCoreService : IBlogService
         BlogResponseModel model = new BlogResponseModel();
         model.IsSuccess = result > 0;
         model.Message = message;
+
         return model;
     }
 
@@ -37,7 +37,7 @@ public class BlogEFCoreService : IBlogService
         }
 
         _db.Entry(item).State = EntityState.Deleted;
-        int result = _db.SaveChanges();
+        var result = _db.SaveChanges();
 
         string message = result > 0 ? "Delete Success." : "Delete Fail!";
         BlogResponseModel model = new BlogResponseModel();
@@ -67,7 +67,7 @@ public class BlogEFCoreService : IBlogService
             return new BlogResponseModel
             {
                 IsSuccess = false,
-                Message = "No data found."
+                Message = "No data found!",
             };
         }
 
@@ -75,9 +75,9 @@ public class BlogEFCoreService : IBlogService
         {
             item.blog_title = requestModel.blog_title;
         }
-        if(!string.IsNullOrEmpty(requestModel.blog_author))
+        if (!string.IsNullOrEmpty(requestModel.blog_author))
         {
-             item.blog_author = requestModel.blog_author;
+            item.blog_author = requestModel.blog_author;
         }
         if (!string.IsNullOrEmpty(requestModel.blog_content))
         {
@@ -98,34 +98,35 @@ public class BlogEFCoreService : IBlogService
     public BlogResponseModel UpsertBlog(BlogModel requestModel)
     {
         BlogResponseModel model = new BlogResponseModel();
+
         var item = _db.Blogs.AsNoTracking().FirstOrDefault(x => x.blog_id == requestModel.blog_id);
-        if(item is null)
+        if(item is not null)
+        {
+            if (!string.IsNullOrEmpty(requestModel.blog_title))
+            {
+                item.blog_title = requestModel.blog_title;
+            }
+            if (!string.IsNullOrEmpty(requestModel.blog_author))
+            {
+                item.blog_author = requestModel.blog_author;
+            }
+            if (!string.IsNullOrEmpty(requestModel.blog_content))
+            {
+                item.blog_content = requestModel.blog_content;
+            }
+
+            _db.Entry(item).State = EntityState.Modified;
+            var result = _db.SaveChanges();
+
+            string message = result > 0 ? "Update Success." : "Update Fail!";
+            model.IsSuccess = result > 0;
+            model.Message = message;
+        }
+        else if(item is null)
         {
             model = CreateBlog(requestModel);
-            return model;
         }
-
-        if (!string.IsNullOrEmpty(requestModel.blog_title))
-        {
-            item.blog_title = requestModel.blog_title;
-        }
-        if (!string.IsNullOrEmpty(requestModel.blog_author))
-        {
-            item.blog_author = requestModel.blog_author;
-        }
-        if (!string.IsNullOrEmpty(requestModel.blog_content))
-        {
-            item.blog_content = requestModel.blog_content;
-        }
-
-        _db.Entry(item).State = EntityState.Modified;
-        var result = _db.SaveChanges();
-
-        string message = result > 0 ? "Update Success." : "Update Fail!";
-        model.IsSuccess = result > 0;
-        model.Message = message;
 
         return model;
-
     }
 }

@@ -1,15 +1,15 @@
 ﻿using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 
-namespace DotNetBatch14KZT.RestApi.Features.Blog;
+namespace DotNetBatch14KZT3.RestApi2.Features.Blog;
 
 public class AppDbContext : DbContext
 {
-    private readonly SqlConnectionStringBuilder _connectionBuilder;
+    private readonly SqlConnectionStringBuilder _connectionStringBuilder;
 
     public AppDbContext()
     {
-        _connectionBuilder = new SqlConnectionStringBuilder()
+        _connectionStringBuilder = new SqlConnectionStringBuilder()
         {
             DataSource = ".",
             InitialCatalog = "test_db",
@@ -23,9 +23,8 @@ public class AppDbContext : DbContext
     {
         if (!optionsBuilder.IsConfigured)
         {
-            optionsBuilder.UseSqlServer(_connectionBuilder.ConnectionString);
-        }
+            optionsBuilder.UseSqlServer(_connectionStringBuilder.ConnectionString);
+        } 
     }
     public DbSet<BlogModel> Blogs { get; set; }
-
 }

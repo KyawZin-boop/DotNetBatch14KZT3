@@ -13,6 +13,6 @@ namespace DotNetBatch14KZT.RestApi.Features.Blog
     public class BlogResponseModel
     {
         public bool IsSuccess { get; set; }
-        public string Message { get; set; }
+        public string? Message { get; set; }
     }
 }
