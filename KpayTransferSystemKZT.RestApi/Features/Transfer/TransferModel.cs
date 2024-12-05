@@ -7,9 +7,9 @@ namespace KpayTransferSystemKZT.RestApi.Features.Transfer;
 public class TransferModel
 {
     [Key]
-    public string? Id { get; set; } = Guid.NewGuid().ToString();
-    public string? FromMobile { get; set; }
-    public string? ToMobile { get; set; }
+    public string? TransactionId { get; set; } = Guid.NewGuid().ToString();
+    public string? FromMobileNo { get; set; }
+    public string? ToMobileNo { get; set; }
     public decimal? Amount { get; set; }
     public DateTime? Date {  get; set; }
     public string? Notes { get; set; }

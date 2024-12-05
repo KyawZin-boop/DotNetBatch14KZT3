@@ -15,7 +15,7 @@ public class TransferService
 
     public TransferModel GetRecord(string id)
     {
-        var item = _db.TransfersHistory!.AsNoTracking().FirstOrDefault(x => x.Id == id);
+        var item = _db.TransfersHistory!.AsNoTracking().FirstOrDefault(x => x.TransactionId == id);
         return item!;
     }
 
@@ -57,16 +57,16 @@ public class TransferService
 
         var history = new TransferModel
         {
-            Id = Guid.NewGuid().ToString(),
-            FromMobile = fromMobile,
-            ToMobile = toMobile,
+            TransactionId = Guid.NewGuid().ToString(),
+            FromMobileNo = fromMobile,
+            ToMobileNo = toMobile,
             Amount = amount,
-            Date = DateTime.UtcNow,
+            Date = DateTime.Now,
             Notes = notes,
         };
 
         _db.TransfersHistory!.Add(history);
-        var result = _db.SaveChanges();
+        int result = _db.SaveChanges();
 
         string message = result > 0 ? "Successfully Transfer." : "Transfer Fail!";
         model.IsSuccess = result > 0;
