@@ -3,15 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35327.3
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotNetBatch14KZT3.ConsoleApp", "DotNetBatch14KZT3.ConsoleApp\DotNetBatch14KZT3.ConsoleApp.csproj", "{30EE78FB-9CE5-4584-9B31-61C3AC3E9CCB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetBatch14KZT3.ConsoleApp", "DotNetBatch14KZT3.ConsoleApp\DotNetBatch14KZT3.ConsoleApp.csproj", "{30EE78FB-9CE5-4584-9B31-61C3AC3E9CCB}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotNetBatch14KZT3.ConsoleApp2", "DotNetBatch14KZT3.ConsoleApp2\DotNetBatch14KZT3.ConsoleApp2.csproj", "{CABD3EC2-E17C-4DE5-9311-DB8A563D85B9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetBatch14KZT3.ConsoleApp2", "DotNetBatch14KZT3.ConsoleApp2\DotNetBatch14KZT3.ConsoleApp2.csproj", "{CABD3EC2-E17C-4DE5-9311-DB8A563D85B9}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotNetBatch14KZT3.ConsoleApp3", "DotNetBatch14KZT3.ConsoleApp3\DotNetBatch14KZT3.ConsoleApp3.csproj", "{2E37AA74-B50A-4FAA-A5E9-921B6CAE5B93}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetBatch14KZT3.ConsoleApp3", "DotNetBatch14KZT3.ConsoleApp3\DotNetBatch14KZT3.ConsoleApp3.csproj", "{2E37AA74-B50A-4FAA-A5E9-921B6CAE5B93}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetBatch14KZT.RestApi", "DotNetBatch14KZT.RestApi\DotNetBatch14KZT.RestApi.csproj", "{B3B370B5-6D28-419E-A3F1-9760E0F322FC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetBatch14KZT3.RestApi2", "DotNetBatch14KZT3.RestApi2\DotNetBatch14KZT3.RestApi2.csproj", "{B696201C-C9FA-4BCA-A53F-9845C00F9E4F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KpayTransferSystemKZT.RestApi", "KpayTransferSystemKZT.RestApi\KpayTransferSystemKZT.RestApi.csproj", "{BEECAF89-361D-4FA0-8C0A-9C0224971D5C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{B696201C-C9FA-4BCA-A53F-9845C00F9E4F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B696201C-C9FA-4BCA-A53F-9845C00F9E4F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B696201C-C9FA-4BCA-A53F-9845C00F9E4F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BEECAF89-361D-4FA0-8C0A-9C0224971D5C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BEECAF89-361D-4FA0-8C0A-9C0224971D5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BEECAF89-361D-4FA0-8C0A-9C0224971D5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BEECAF89-361D-4FA0-8C0A-9C0224971D5C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

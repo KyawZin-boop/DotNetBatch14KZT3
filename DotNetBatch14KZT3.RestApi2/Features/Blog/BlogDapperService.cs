@@ -26,7 +26,7 @@ public class BlogDapperService : IBlogService
         return model;
     }
 
-    public BlogResponseModel Delete(string id)
+    public BlogResponseModel DeleteBlog(string id)
     {
         using IDbConnection connection = new SqlConnection(_connectionBuilder.ConnectionString);
         var result = connection.Execute($"delete from [dbo].[tbl_blog] where blog_id='{id}'");
@@ -60,7 +60,7 @@ public class BlogDapperService : IBlogService
         return lst;
     }
 
-    public BlogResponseModel Update(BlogModel requestModel)
+    public BlogResponseModel UpdateBlog(BlogModel requestModel)
     {
         BlogResponseModel model = new BlogResponseModel();
 
@@ -100,7 +100,7 @@ public class BlogDapperService : IBlogService
         return model;
     }
 
-    public BlogResponseModel Upsert(BlogModel requestModel)
+    public BlogResponseModel UpsertBlog(BlogModel requestModel)
     {
         BlogResponseModel model = new BlogResponseModel();
 
