@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetBatch14KZT3.RestApi2"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KpayTransferSystemKZT.RestApi", "KpayTransferSystemKZT.RestApi\KpayTransferSystemKZT.RestApi.csproj", "{BEECAF89-361D-4FA0-8C0A-9C0224971D5C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiniPosSystemKZT.RestApi", "MiniPosSystemKZT.RestApi\MiniPosSystemKZT.RestApi.csproj", "{B7F2B96D-FD45-409B-95B0-94417EC0831F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{BEECAF89-361D-4FA0-8C0A-9C0224971D5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BEECAF89-361D-4FA0-8C0A-9C0224971D5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BEECAF89-361D-4FA0-8C0A-9C0224971D5C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B7F2B96D-FD45-409B-95B0-94417EC0831F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B7F2B96D-FD45-409B-95B0-94417EC0831F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B7F2B96D-FD45-409B-95B0-94417EC0831F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B7F2B96D-FD45-409B-95B0-94417EC0831F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
