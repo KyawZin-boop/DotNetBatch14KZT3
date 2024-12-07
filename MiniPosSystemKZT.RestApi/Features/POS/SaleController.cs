@@ -5,13 +5,13 @@ namespace MiniPosSystemKZT.RestApi.Features.POS;
 
 [Route("api/[controller]")]
 [ApiController]
-public class TransactionController : ControllerBase
+public class SaleController : ControllerBase
 {
-    private readonly TransactionService _service;
+    private readonly SaleService _service;
 
-    public TransactionController()
+    public SaleController()
     {
-        _service = new TransactionService();
+        _service = new SaleService();
     }
 
     [HttpGet]
@@ -34,7 +34,7 @@ public class TransactionController : ControllerBase
     }
 
     [HttpPost]
-    public IActionResult CreateHistory([FromBody] TransactionModel requestModel)
+    public IActionResult CreateHistory([FromBody] SaleModel requestModel)
     {
         var model = _service.CreateHistory(requestModel);
         if (model is null)

@@ -5,38 +5,38 @@ namespace MiniPosSystemKZT.RestApi.Features.POS
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ProductController : ControllerBase
+    public class ProductCategoryController : ControllerBase
     {
-        private readonly ProductService _service;
+        private readonly CategoryService _service;
 
-        public ProductController()
+        public ProductCategoryController()
         {
-            _service = new ProductService();
+            _service = new CategoryService();
         }
 
         [HttpGet]
-        public IActionResult GetProducts()
+        public IActionResult GetCategories()
         {
-            var model = _service.GetProducts();
+            var model = _service.GetCategories();
             return Ok(model);
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetProduct(string id)
+        public IActionResult GetCategory(string id)
         {
-            var model = _service.GetProduct(id);
-            if (model is null)
+            var model = _service.GetCategory(id);
+            if(model is null)
             {
-                return NotFound("No data found!");
+                return BadRequest(model);
             }
 
             return Ok(model);
         }
 
         [HttpPost]
-        public IActionResult CreateProduct([FromBody] ProductModel requestModel)
+        public IActionResult CreateCategory([FromBody] CategoryModel requestModel)
         {
-            var model = _service.CreateProduct(requestModel);
+            var model = _service.CreateCategory(requestModel);
             if (model is null)
             {
                 return BadRequest(model);
@@ -45,10 +45,10 @@ namespace MiniPosSystemKZT.RestApi.Features.POS
         }
 
         [HttpPut("{id}")]
-        public IActionResult UpsertProduct(string id, ProductModel requestModel)
+        public IActionResult UpsertCategory(string id, CategoryModel requestModel)
         {
-            requestModel.ProductId = id;
-            var model = _service.UpsertProduct(requestModel);
+            requestModel.CategoryId = id;
+            var model = _service.UpsertCategory(requestModel);
             if (!model.IsSuccess)
             {
                 return BadRequest(model);
@@ -58,10 +58,10 @@ namespace MiniPosSystemKZT.RestApi.Features.POS
         }
 
         [HttpPatch("{id}")]
-        public IActionResult UpdateProduct(string id, ProductModel requestModel)
+        public IActionResult UpdateCategory(string id, CategoryModel requestModel)
         {
-            requestModel.ProductId = id;
-            var model = _service.UpdateProduct(requestModel);
+            requestModel.CategoryId = id;
+            var model = _service.UpdateCategory(requestModel);
             if (!model.IsSuccess)
             {
                 return BadRequest(model);
@@ -71,9 +71,9 @@ namespace MiniPosSystemKZT.RestApi.Features.POS
         }
 
         [HttpDelete("{id}")]
-        public IActionResult DeleteProduct(string id)
+        public IActionResult DeleteCategory(string id)
         {
-            var model = _service.DeleteProduct(id);
+            var model = _service.DeleteCategory(id);
             if (!model.IsSuccess)
             {
                 return BadRequest(model);

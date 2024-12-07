@@ -133,6 +133,5 @@ namespace MiniPosSystemKZT.RestApi.Features.POS
 
             return model;
         }
-
     }
 }

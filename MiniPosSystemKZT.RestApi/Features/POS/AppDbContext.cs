@@ -22,5 +22,8 @@ public class AppDbContext : DbContext
         }
     }
     public DbSet<ProductModel>? Product { get; set; }
-    public DbSet<TransactionModel>? Transaction { get; set; }
+    public DbSet<SaleModel>? Sale { get; set; }
+    public DbSet<CategoryModel>? Category { get; set; }
+
+    public DbSet<SaleDetailsModel>? SaleDetails { get; set; }
 }

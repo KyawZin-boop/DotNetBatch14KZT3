@@ -1,28 +1,28 @@
 ﻿namespace MiniPosSystemKZT.RestApi.Features.POS;
 
-public class TransactionService
+public class SaleService
 {
     private readonly AppDbContext _db = new AppDbContext();
 
-    public List<TransactionModel> GetHistories()
+    public List<SaleModel> GetHistories()
     {
-        List<TransactionModel> lst = _db.Transaction!.ToList();
+        List<SaleModel> lst = _db.Sale!.ToList();
         return lst;
     }
 
-    public TransactionModel GetHistory(string id)
+    public SaleModel GetHistory(string id)
     {
-        var item = _db.Transaction!.FirstOrDefault(x => x.Id == id);
+        var item = _db.Sale!.FirstOrDefault(x => x.Id == id);
         return item!;
     }
 
-    public TransactionRequestModel CreateHistory(TransactionModel requestModel)
+    public SaleResponseModel CreateHistory(SaleModel requestModel)
     {
         _db.Add(requestModel);
         var result = _db.SaveChanges();
 
         string message = result > 0 ? "Create Success." : "Create Fail!";
-        TransactionRequestModel model = new TransactionRequestModel();
+        SaleResponseModel model = new SaleResponseModel();
         model.IsSuccess = result > 0;
         model.Message = message;
 
