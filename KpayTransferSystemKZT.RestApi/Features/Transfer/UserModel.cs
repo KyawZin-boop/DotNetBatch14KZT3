@@ -14,6 +14,25 @@ public class UserModel
     public string? Password { get; set; }
 }
 
+public class UserRequestModel
+{
+    public string? UserName { get; set; }
+    public string? MobileNumber { get; set; }
+    public string? Password { get; set; }
+}
+
+public class UserDepositModel
+{
+    public string? MobileNumber { get; set; }
+    public decimal? Balance { get; set; }
+}
+
+public class UserWithdrawModel
+{
+    public string? MobileNumber { get; set; }
+    public decimal? Balance { get; set; }
+}
+
 public class UserResponseModel
 {
     public bool IsSuccess { get; set; }

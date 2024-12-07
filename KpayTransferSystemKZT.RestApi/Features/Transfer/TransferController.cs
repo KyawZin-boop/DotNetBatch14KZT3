@@ -34,9 +34,9 @@ namespace KpayTransferSystemKZT.RestApi.Features.Transfer
         }
 
         [HttpPost]
-        public IActionResult CreateTransfer(UserModel user, [FromBody] TransferRequestModel requestModel)
+        public IActionResult CreateTransfer([FromBody] TransferRequestModel requestModel)
         {
-            var model = _service.CreateTransfer( user, requestModel);
+            var model = _service.CreateTransfer(requestModel);
             if (model is null)
             {
                 return BadRequest(model);

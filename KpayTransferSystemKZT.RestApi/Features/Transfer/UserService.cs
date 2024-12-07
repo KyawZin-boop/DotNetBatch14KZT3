@@ -68,10 +68,6 @@ public class UserService
         {
             user.MobileNumber = requestUser.MobileNumber;
         }
-        if (!string.IsNullOrEmpty(requestUser.Balance.ToString()))
-        {
-            user.Balance = requestUser.Balance;
-        }
         if (!string.IsNullOrEmpty(requestUser.Password))
         {
             user.Password = requestUser.Password;
@@ -138,6 +134,54 @@ public class UserService
         var result = _db.SaveChanges();
 
         string message = result > 0 ? "Delete Success." : "Delete Fail!";
+        model.IsSuccess = result > 0;
+        model.Message = message;
+
+        return model;
+    }
+
+    public UserResponseModel Deposit(UserDepositModel requestModel)
+    {
+        UserResponseModel model = new UserResponseModel();
+
+        var user = _db.Users.AsNoTracking().FirstOrDefault(x => x.MobileNumber == requestModel.MobileNumber);
+        if(user is null)
+        {
+            model.IsSuccess = false;
+            model.Message = "Incorrect Mobile Number!";
+            return model;
+        }
+
+        user.Balance += requestModel.Balance;
+
+        _db.Entry(user).State = EntityState.Modified;
+        var result = _db.SaveChanges();
+
+        string message = result > 0 ? "Deposit Success." : "Deposit Fail!";
+        model.IsSuccess = result > 0;
+        model.Message = message;
+
+        return model;
+    }
+
+    public UserResponseModel Withdraw(UserWithdrawModel requestModel)
+    {
+        UserResponseModel model = new UserResponseModel();
+
+        var user = _db.Users.AsNoTracking().FirstOrDefault(x => x.MobileNumber == requestModel.MobileNumber);
+        if(user is null)
+        {
+            model.IsSuccess = false;
+            model.Message = "Incorrect Mobile Number";
+            return model;
+        }
+
+        user.Balance -= requestModel.Balance;
+
+        _db.Entry(user).State = EntityState.Modified;
+        var result = _db.SaveChanges();
+
+        string message = result > 0 ? "Withdraw Success." : "Withdraw Fail!";
         model.IsSuccess = result > 0;
         model.Message = message;
 

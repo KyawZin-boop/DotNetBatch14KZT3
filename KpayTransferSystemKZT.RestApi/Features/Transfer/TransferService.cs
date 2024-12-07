@@ -19,11 +19,11 @@ public class TransferService
         return item!;
     }
 
-    public TransferResponseModel CreateTransfer(UserModel user, TransferRequestModel requestModel)
+    public TransferResponseModel CreateTransfer(TransferRequestModel requestModel)
     {
         TransferResponseModel model = new TransferResponseModel();
 
-        var sender = _db.Users!.FirstOrDefault(x => x.MobileNumber == requestModel.ToMobileNo);
+        var sender = _db.Users!.FirstOrDefault(x => x.MobileNumber == requestModel.FromMobileNo);
         if (sender is null)
         {
             model.IsSuccess = false;
