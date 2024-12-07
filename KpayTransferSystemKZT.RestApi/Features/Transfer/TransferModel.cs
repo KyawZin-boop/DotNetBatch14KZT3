@@ -15,6 +15,15 @@ public class TransferModel
     public string? Notes { get; set; }
 }
 
+public class TransferRequestModel
+{
+    public string? FromMobileNo { get; set; }
+    public string? ToMobileNo { get; set; }
+    public decimal? Amount { get; set; }
+    public string? Password { get; set; }
+    public string? Notes { get; set; }
+}
+
 public class TransferResponseModel
 {
     public bool? IsSuccess { get; set; }

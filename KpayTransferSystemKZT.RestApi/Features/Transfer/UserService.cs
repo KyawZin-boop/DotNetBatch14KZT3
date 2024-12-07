@@ -68,6 +68,10 @@ public class UserService
         {
             user.MobileNumber = requestUser.MobileNumber;
         }
+        if (!string.IsNullOrEmpty(requestUser.Balance.ToString()))
+        {
+            user.Balance = requestUser.Balance;
+        }
         if (!string.IsNullOrEmpty(requestUser.Password))
         {
             user.Password = requestUser.Password;

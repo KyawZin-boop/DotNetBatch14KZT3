@@ -34,9 +34,9 @@ namespace KpayTransferSystemKZT.RestApi.Features.Transfer
         }
 
         [HttpPost]
-        public IActionResult CreateTransfer(UserModel user, string fromMobile, string toMobile, string password, decimal amount, string notes)
+        public IActionResult CreateTransfer(UserModel user, [FromBody] TransferRequestModel requestModel)
         {
-            var model = _service.CreateTransfer( user, fromMobile, toMobile, password, amount, notes);
+            var model = _service.CreateTransfer( user, requestModel);
             if (model is null)
             {
                 return BadRequest(model);

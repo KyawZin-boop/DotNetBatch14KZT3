@@ -19,11 +19,11 @@ public class TransferService
         return item!;
     }
 
-    public TransferResponseModel CreateTransfer(UserModel user, string fromMobile, string toMobile, string password, decimal amount, string notes)
+    public TransferResponseModel CreateTransfer(UserModel user, TransferRequestModel requestModel)
     {
         TransferResponseModel model = new TransferResponseModel();
 
-        var sender = _db.Users!.FirstOrDefault(x => x.MobileNumber == fromMobile);
+        var sender = _db.Users!.FirstOrDefault(x => x.MobileNumber == requestModel.ToMobileNo);
         if (sender is null)
         {
             model.IsSuccess = false;
@@ -31,20 +31,20 @@ public class TransferService
             return model;
         }
 
-        if (sender.Password != password)
+        if (sender.Password != requestModel.Password)
         {
             model.IsSuccess = false;
             model.Message = "Incorrect Password!";
             return model;
         }
-        if (sender.Balance <= 10000 || (sender.Balance - 10000) <= amount)
+        if (sender.Balance <= 10000 || (sender.Balance - 10000) <= requestModel.Amount)
         {
             model.IsSuccess = false;
             model.Message = "Not enough balance!";
             return model;
         }
 
-        var receiver = _db.Users!.FirstOrDefault(x => x.MobileNumber == toMobile);
+        var receiver = _db.Users!.FirstOrDefault(x => x.MobileNumber == requestModel.ToMobileNo);
         if(receiver is null)
         {
             model.IsSuccess = false;
@@ -52,17 +52,17 @@ public class TransferService
             return model;
         }
 
-        sender.Balance -= amount;
-        receiver.Balance += amount;
+        sender.Balance -= requestModel.Amount;
+        receiver.Balance += requestModel.Amount;
 
         var history = new TransferModel
         {
             TransactionId = Guid.NewGuid().ToString(),
-            FromMobileNo = fromMobile,
-            ToMobileNo = toMobile,
-            Amount = amount,
+            FromMobileNo = requestModel.FromMobileNo,
+            ToMobileNo = requestModel.ToMobileNo,
+            Amount = requestModel.Amount,
             Date = DateTime.Now,
-            Notes = notes,
+            Notes = requestModel.Notes,
         };
 
         _db.TransfersHistory!.Add(history);
