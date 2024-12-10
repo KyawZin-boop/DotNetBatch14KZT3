@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.SignalR;
-using Microsoft.Data.SqlClient;
+﻿using Microsoft.Data.SqlClient;
 using System.Data;
 
 namespace DotNetBatch14KZT3.Shared;
@@ -105,33 +104,50 @@ public class BlogService : IBlogService
             };
         }
 
-        if (string.IsNullOrEmpty(requestModel.blog_title))
+        string conditions = string.Empty;
+
+        if (!string.IsNullOrEmpty(requestModel.blog_title))
         {
-            requestModel.blog_title = item.blog_title;
+            conditions += " [blog_title] = @blog_title, ";
         }
-        if (string.IsNullOrEmpty(requestModel.blog_author))
+        if (!string.IsNullOrEmpty(requestModel.blog_author))
         {
-            requestModel.blog_author = item.blog_author;
+            conditions += " [blog_author] = @blog_author, ";
         }
-        if (string.IsNullOrEmpty(requestModel.blog_content))
+        if (!string.IsNullOrEmpty(requestModel.blog_content))
         {
-            requestModel.blog_content = item.blog_content;
+            conditions += " [blog_content] = @blog_content, ";
+        }
+        if (conditions.Length == 0)
+        {
+            throw new Exception("Invalid Parameters.");
         }
 
-        string query = @"UPDATE [dbo].[tbl_blog]
-                        SET [blog_title] = @blog_title,
-                            [blog_author] = @blog_author,
-                            [blog_content] = @blog_content
+        conditions = conditions.Substring(0, conditions.Length - 2);
+
+        string query = $@"UPDATE [dbo].[tbl_blog]
+                        SET {conditions}
                         WHERE blog_id = @blog_id";
 
         SqlConnection con = new SqlConnection(_conntectionBuilder.ConnectionString);
         con.Open();
 
         SqlCommand cmd = new SqlCommand(query, con);
+
         cmd.Parameters.AddWithValue("@blog_id", requestModel.blog_id);
-        cmd.Parameters.AddWithValue("@blog_title", requestModel.blog_title);
-        cmd.Parameters.AddWithValue("@blog_author", requestModel.blog_author);
-        cmd.Parameters.AddWithValue("@blog_content", requestModel.blog_content);
+        if (!string.IsNullOrEmpty(requestModel.blog_title))
+        {
+            cmd.Parameters.AddWithValue("@blog_title", requestModel.blog_title);
+        }
+        if (!string.IsNullOrEmpty(requestModel.blog_author))
+        {
+            cmd.Parameters.AddWithValue("@blog_author", requestModel.blog_author);
+        }
+        if (!string.IsNullOrEmpty(requestModel.blog_content))
+        {
+            cmd.Parameters.AddWithValue("@blog_content", requestModel.blog_content);
+        }
+
         int result = cmd.ExecuteNonQuery();
 
         con.Close();
@@ -147,24 +163,54 @@ public class BlogService : IBlogService
     public BlogResponseModel UpsertBlog(BlogModel requestModel)
     {
         BlogResponseModel model = new BlogResponseModel();
-        var item = GetBlog(requestModel.blog_id);
+        var item = GetBlog(requestModel.blog_id!);
 
         if (item is not null)
         {
-            string query = @"UPDATE [dbo].[tbl_blog]
-                                SET [blog_title]='@blog_title',
-                                    [blog_author]='@blog_author',
-                                    [blog_content]='@blog_content'
-                                WHERE blog_id='@blog_id'";
+            string conditions = string.Empty;
+
+            if (!string.IsNullOrEmpty(requestModel.blog_title))
+            {
+                conditions += " [blog_title] = @blog_title, ";
+            }
+            if (!string.IsNullOrEmpty(requestModel.blog_author))
+            {
+                conditions += " [blog_author] = @blog_author, ";
+            }
+            if (!string.IsNullOrEmpty(requestModel.blog_content))
+            {
+                conditions += " [blog_content] = @blog_content, ";
+            }
+            if (conditions.Length == 0)
+            {
+                throw new Exception("Invalid Parameters.");
+            }
+
+            conditions = conditions.Substring(0, conditions.Length - 2);
+
+            string query = $@"UPDATE [dbo].[tbl_blog]
+                        SET {conditions}
+                        WHERE blog_id = @blog_id";
 
             SqlConnection con = new SqlConnection(_conntectionBuilder.ConnectionString);
             con.Open();
 
             SqlCommand cmd = new SqlCommand(query, con);
+
             cmd.Parameters.AddWithValue("@blog_id", requestModel.blog_id);
-            cmd.Parameters.AddWithValue("@blog_title", requestModel.blog_title);
-            cmd.Parameters.AddWithValue("@blog_author", requestModel.blog_author);
-            cmd.Parameters.AddWithValue("@blog_content", requestModel.blog_content);
+            if (!string.IsNullOrEmpty(requestModel.blog_title))
+            {
+                cmd.Parameters.AddWithValue("@blog_title", requestModel.blog_title);
+            }
+            if (!string.IsNullOrEmpty(requestModel.blog_author))
+            {
+                cmd.Parameters.AddWithValue("@blog_author", requestModel.blog_author);
+            }
+            if (!string.IsNullOrEmpty(requestModel.blog_content))
+            {
+                cmd.Parameters.AddWithValue("@blog_content", requestModel.blog_content);
+            }
+
             int result = cmd.ExecuteNonQuery();
 
             con.Close();
