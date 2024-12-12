@@ -2,16 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
-using DotNetBatch14KZT3.Shared;
 using Newtonsoft.Json;
 using static System.Net.Mime.MediaTypeNames;
 
-namespace DotNetBatch14KZT3.ConsoleApp4;
+namespace DotNetBatch14KZT3.ConsoleApp5;
 
 public class BlogHttpClientService
 {
-    private readonly string endpoint = "https://localhost:7015/api/blog";
+    private readonly string endpoint = "http://localhost:5073/api/blog";
     private readonly HttpClient _httpClient;
 
     public BlogHttpClientService()
@@ -26,6 +26,7 @@ public class BlogHttpClientService
         Console.WriteLine(content);
         return JsonConvert.DeserializeObject<BlogListResponseModel>(content)!;
     }
+
     public async Task<BlogResponseModel> GetBlog(string id)
     {
         HttpResponseMessage response = await _httpClient.GetAsync($"{endpoint}/{id}");
@@ -37,7 +38,7 @@ public class BlogHttpClientService
     public async Task<BlogResponseModel> CreateBlog(BlogModel requestModel)
     {
         string jsonStr = JsonConvert.SerializeObject(requestModel);
-        var stringContent = new StringContent(jsonStr, Encoding.UTF8, Application.Json);
+        StringContent stringContent = new StringContent(jsonStr, Encoding.UTF8, Application.Json);
         HttpResponseMessage response = await _httpClient.PostAsync(endpoint, stringContent);
 
         string content = await response.Content.ReadAsStringAsync();
@@ -48,8 +49,19 @@ public class BlogHttpClientService
     public async Task<BlogResponseModel> UpdateBlog(BlogModel requestModel)
     {
         string jsonStr = JsonConvert.SerializeObject(requestModel);
-        var stringContent = new StringContent(jsonStr, Encoding.UTF8, Application.Json);
-        HttpResponseMessage response = await _httpClient.PatchAsync($"{endpoint}/{requestModel.blog_id}", stringContent);
+        StringContent stringContent = new StringContent(jsonStr, Encoding.UTF8, Application.Json);
+        HttpResponseMessage response = await _httpClient.PatchAsync(endpoint, stringContent);
+
+        string content = await response.Content.ReadAsStringAsync();
+        Console.WriteLine(content);
+        return JsonConvert.DeserializeObject<BlogResponseModel>(content)!;
+    }
+
+    public async Task<BlogResponseModel> UpsertBlog(BlogModel requestModel)
+    {
+        string jsonStr = JsonConvert.SerializeObject(requestModel);
+        StringContent stringContent = new StringContent(jsonStr, Encoding.UTF8, Application.Json);
+        HttpResponseMessage response = await _httpClient.PutAsync(endpoint, stringContent);
 
         string content = await response.Content.ReadAsStringAsync();
         Console.WriteLine(content);
@@ -63,4 +75,5 @@ public class BlogHttpClientService
         Console.WriteLine(content);
         return JsonConvert.DeserializeObject<BlogResponseModel>(content)!;
     }
+
 }
