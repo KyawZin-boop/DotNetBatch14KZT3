@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace SnakeGameKZT.RestApi.Features;
+namespace SnakeGameKZT.RestApi.Features.Player;
 
 public class PlayerService
 {
@@ -21,7 +21,7 @@ public class PlayerService
     {
         PlayerResponseModel model = new PlayerResponseModel();
         var player = _db.Players.AsNoTracking().FirstOrDefault(x => x.PlayerId == id);
-        if(player is null)
+        if (player is null)
         {
             model.Message = "Player not found!";
             return model;
@@ -38,7 +38,7 @@ public class PlayerService
     {
         PlayerResponseModel model = new PlayerResponseModel();
         var player = _db.Players.AsNoTracking().FirstOrDefault(x => x.PlayerName == requestModel.PlayerName);
-        if(player is not null)
+        if (player is not null)
         {
             model.Message = "PlayerName already exist!";
             return model;

@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace SnakeGameKZT.RestApi.Features;
+namespace SnakeGameKZT.RestApi.Features.Player;
 
 [Route("api/[controller]")]
 [ApiController]
@@ -33,7 +33,7 @@ public class PlayerController : ControllerBase
     public IActionResult CreatePlayer([FromBody] PlayerModel requestModel)
     {
         var model = _service.CreatePlayer(requestModel);
-        if(model is null)
+        if (model is null)
         {
             return BadRequest(model);
         }

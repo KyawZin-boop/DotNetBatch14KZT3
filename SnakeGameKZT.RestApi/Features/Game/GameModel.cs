@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace SnakeGameKZT.RestApi.Features;
+namespace SnakeGameKZT.RestApi.Features.Game;
 
 [Table("tbl_games")]
 public class GameModel

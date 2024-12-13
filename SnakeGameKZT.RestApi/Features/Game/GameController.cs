@@ -1,7 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using SnakeGameKZT.RestApi.Features.Player;
 
-namespace SnakeGameKZT.RestApi.Features
+namespace SnakeGameKZT.RestApi.Features.Game
 {
     [Route("api/[controller]")]
     [ApiController]

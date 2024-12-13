@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace SnakeGameKZT.RestApi.Features;
+namespace SnakeGameKZT.RestApi.Features.GameMoves;
 
 [Table("tbl_game_moves")]
 public class GameMovesModel
@@ -10,7 +10,7 @@ public class GameMovesModel
     public int? MoveId { get; set; }
     public int? GameId { get; set; }
     public int? PlayerId { get; set; }
-    public int? FromCell {  get; set; }
+    public int? FromCell { get; set; }
     public int? ToCell { get; set; }
     public DateTime MoveDate { get; set; } = DateTime.UtcNow;
 }

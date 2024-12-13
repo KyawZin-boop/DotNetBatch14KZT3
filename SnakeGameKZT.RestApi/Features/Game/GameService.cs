@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using SnakeGameKZT.RestApi.Features.Player;
 
-namespace SnakeGameKZT.RestApi.Features;
+namespace SnakeGameKZT.RestApi.Features.Game;
 
 public class GameService
 {
@@ -10,7 +11,7 @@ public class GameService
     {
         GameResponseModel model = new GameResponseModel();
         var player = _db.Players.AsNoTracking().FirstOrDefault(x => x.PlayerName == requestModel.PlayerName);
-        if(player is null)
+        if (player is null)
         {
             model.Message = "There's no player with this name!";
             return model;
