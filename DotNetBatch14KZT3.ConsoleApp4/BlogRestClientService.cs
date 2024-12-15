@@ -31,7 +31,7 @@ public class BlogRestClientService
     public async Task<BlogResponseModel> GetBlog(string id)
     {
         RestRequest request = new RestRequest($"{endpoint}/{id}", Method.Get);
-        HttpResponseMessage response = await _restClient.ExecuteAsync(request);
+        RestResponse response = await _restClient.ExecuteAsync(request);
         string content = response.Content!;
         Console.WriteLine(content);
         return JsonConvert.DeserializeObject<BlogResponseModel>(content)!;
@@ -41,7 +41,7 @@ public class BlogRestClientService
     {
         RestRequest request = new RestRequest(endpoint, Method.Post);
         request.AddJsonBody(requestModel);
-        HttpResponseMessage response = await _restClient.ExecuteAsync(request);
+        RestResponse response = await _restClient.ExecuteAsync(request);
 
         string content = response.Content!;
         Console.WriteLine(content);
@@ -52,7 +52,7 @@ public class BlogRestClientService
     {
         RestRequest request = new RestRequest($"{endpoint}/{requestModel.blog_id}", Method.Patch);
         request.AddJsonBody(requestModel);
-        HttpResponseMessage response = await _restClient.ExecuteAsync(request);
+        RestResponse response = await _restClient.ExecuteAsync(request);
 
         string content = response.Content!;
         Console.WriteLine(content);
@@ -62,7 +62,7 @@ public class BlogRestClientService
     public async Task<BlogResponseModel> DeleteBlog(string id)
     {
         RestRequest request = new RestRequest($"{endpoint}/{id}", Method.Delete);
-        HttpResponseMessage response = await _restClient.ExecuteAsync(request);
+        RestResponse response = await _restClient.ExecuteAsync(request);
         string content = response.Content!;
         Console.WriteLine(content);
         return JsonConvert.DeserializeObject<BlogResponseModel>(content)!;
