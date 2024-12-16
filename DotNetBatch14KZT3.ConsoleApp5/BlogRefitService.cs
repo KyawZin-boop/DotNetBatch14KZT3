@@ -3,12 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DotNetBatch14KZT3.Shared;
-using Newtonsoft.Json;
 using Refit;
-using RestSharp;
 
-namespace DotNetBatch14KZT3.ConsoleApp4;
+namespace DotNetBatch14KZT3.ConsoleApp5;
 
 public class BlogRefitService
 {
@@ -38,7 +35,7 @@ public class BlogRefitService
         return model;
     }
 
-    public async Task<BlogResponseModel> UpdateBlog(string id,  BlogModel requestModel)
+    public async Task<BlogResponseModel> UpdateBlog(string id, BlogModel requestModel)
     {
         var model = await _api.UpdateBlog(id, requestModel);
         return model;
