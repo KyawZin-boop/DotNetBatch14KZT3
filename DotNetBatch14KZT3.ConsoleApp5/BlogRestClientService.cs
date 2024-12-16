@@ -20,7 +20,7 @@ public class BlogRestClientService
 
     public async Task<BlogListResponseModel> GetBlogs()
     {
-        RestRequest request = new RestRequest(endpoint);
+        RestRequest request = new RestRequest(endpoint, Method.Get);
         RestResponse response = await _client.ExecuteAsync(request);
         var content = response.Content!;
         Console.WriteLine(content);
@@ -29,7 +29,7 @@ public class BlogRestClientService
 
     public async Task<BlogResponseModel> GetBlog(string id)
     {
-        RestRequest request = new RestRequest($"{endpoint}/{id}");
+        RestRequest request = new RestRequest($"{endpoint}/{id}", Method.Get);
         RestResponse response = await _client.ExecuteAsync(request);
         var content = response.Content!;
         Console.WriteLine(content);
@@ -38,7 +38,7 @@ public class BlogRestClientService
 
     public async Task<BlogResponseModel> CreateBlog(BlogModel requestModel)
     {
-        RestRequest request = new RestRequest(endpoint);
+        RestRequest request = new RestRequest(endpoint, Method.Post);
         request.AddBody(requestModel);
         RestResponse response = await _client.ExecuteAsync(request);
 
@@ -49,7 +49,7 @@ public class BlogRestClientService
 
     public async Task<BlogResponseModel> UpdateBlog(BlogModel requestModel)
     {
-        RestRequest request = new RestRequest($"{endpoint}/{requestModel.blog_id}");
+        RestRequest request = new RestRequest($"{endpoint}/{requestModel.blog_id}", Method.Patch);
         request.AddBody(requestModel);
         RestResponse response = await _client.ExecuteAsync(request);
 
@@ -60,7 +60,7 @@ public class BlogRestClientService
 
     public async Task<BlogResponseModel> DeleteBlog(string id)
     {
-        RestRequest request = new RestRequest(endpoint);
+        RestRequest request = new RestRequest(endpoint, Method.Delete);
         RestResponse response = await _client.ExecuteAsync(request);
         var content = response.Content!;
         Console.WriteLine(content);
