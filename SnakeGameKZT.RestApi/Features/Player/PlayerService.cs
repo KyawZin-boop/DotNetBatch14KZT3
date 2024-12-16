@@ -17,23 +17,6 @@ public class PlayerService
         return model;
     }
 
-    public PlayerResponseModel GetPlayer(int id)
-    {
-        PlayerResponseModel model = new PlayerResponseModel();
-        var player = _db.Players.AsNoTracking().FirstOrDefault(x => x.PlayerId == id);
-        if (player is null)
-        {
-            model.Message = "Player not found!";
-            return model;
-        }
-
-        model.IsSuccess = true;
-        model.Message = "Success.";
-        model.Data = player;
-
-        return model;
-    }
-
     public PlayerResponseModel CreatePlayer(PlayerModel requestModel)
     {
         PlayerResponseModel model = new PlayerResponseModel();

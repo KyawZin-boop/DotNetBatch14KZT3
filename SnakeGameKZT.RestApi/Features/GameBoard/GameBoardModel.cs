@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SnakeGameKZT.RestApi.Features.GameBoard;
 
-[Table("tbl_gameboard")]
+[Table("Tbl_GameBoard")]
 public class GameBoardModel
 {
     [Key]

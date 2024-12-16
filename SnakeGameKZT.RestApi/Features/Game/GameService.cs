@@ -7,20 +7,25 @@ public class GameService
 {
     private readonly AppDbContext _db = new AppDbContext();
 
-    public GameResponseModel CreateGame(PlayerModel requestModel)
+    public GameResponseModel CreateGame(GameRequestModel requestModel)
     {
         GameResponseModel model = new GameResponseModel();
-        var player = _db.Players.AsNoTracking().FirstOrDefault(x => x.PlayerName == requestModel.PlayerName);
-        if (player is null)
-        {
-            model.Message = "There's no player with this name!";
-            return model;
-        }
+        int? firstPlayer = null;
 
+        for(int i = 0; i < requestModel.Players.Count; i++) {
+            _db.Players.Add(requestModel.Players[i]);
+            _db.SaveChanges();
+
+            if (i == 0)
+            {
+                firstPlayer = requestModel.Players[i].PlayerId;
+            }
+        }
         var game = new GameModel
         {
             GameStatus = "InProgress",
-            CurrentPlayerId = player.PlayerId,
+            CurrentPlayerId = firstPlayer,
+            PlayerCount = requestModel.Players.Count,
         };
 
         _db.Games.Add(game);

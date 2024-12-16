@@ -8,6 +8,11 @@ public class GameBoardService
 
     public GameBoardResponseModel CreateBoard()
     {
+        return new GameBoardResponseModel
+        {
+            IsSuccess = true,
+            Message = "Success."
+        };
         Random random = new Random();
         string[] type = { "Normal", "SnakeHead", "Normal", "SnakeTail", "Normal", "LadderBottom", "Normal", "LadderTop", "Normal" };
         for(int i = 1; i <= 100; i++)

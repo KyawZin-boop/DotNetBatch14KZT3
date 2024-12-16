@@ -12,7 +12,7 @@ public class AppDbContext : DbContext
     private readonly SqlConnectionStringBuilder _connectionString = new SqlConnectionStringBuilder()
     {
         DataSource = ".",
-        InitialCatalog = "snake_game_db",
+        InitialCatalog = "SnakeAndLadder_db",
         UserID = "sa",
         Password = "Kyawzin@123",
         TrustServerCertificate = true

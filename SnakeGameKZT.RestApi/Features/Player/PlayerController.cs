@@ -21,14 +21,6 @@ public class PlayerController : ControllerBase
         return Ok(model);
     }
 
-    [HttpGet("{id}")]
-    public IActionResult GetPlayer(int id)
-    {
-        var model = _service.GetPlayer(id);
-        if (model is null) return NotFound("User not found!");
-        return Ok(model);
-    }
-
     [HttpPost]
     public IActionResult CreatePlayer([FromBody] PlayerModel requestModel)
     {

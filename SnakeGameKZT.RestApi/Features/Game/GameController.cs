@@ -16,7 +16,7 @@ namespace SnakeGameKZT.RestApi.Features.Game
         }
 
         [HttpPost]
-        public IActionResult CreateGame([FromBody] PlayerModel requestModel)
+        public IActionResult CreateGame([FromBody] GameRequestModel requestModel)
         {
             try
             {
