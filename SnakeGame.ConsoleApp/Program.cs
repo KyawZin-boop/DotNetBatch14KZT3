@@ -30,7 +30,7 @@ HttpClientService _httpService = new HttpClientService();
 
 //var content = await _httpService.PlayGame(new GameMovesRequestModel
 //{
-//    PlayerId = 8
+//    PlayerId = 6
 //});
 //Console.WriteLine(content.Message);
 //Console.WriteLine($"Current Cell : {content.CurrentCell}");
@@ -50,13 +50,22 @@ HttpClientService _httpService = new HttpClientService();
 //Console.ReadLine();
 
 RefitService _refit =  new RefitService();
-var content = await _refit.GetPlayer();
-Console.ForegroundColor = ConsoleColor.Green;
+//var content = await _refit.GetPlayers();
+//Console.ForegroundColor = ConsoleColor.Green;
+//Console.WriteLine(content.Message);
+//Console.WriteLine("\n{0,-5} {1,-10} {2,-20:C}", "Id", "Name", "Current Position");
+//Console.WriteLine(new string('-', 35));
+//foreach (var item in content.Data)
+//{
+//    Console.WriteLine("{0,-5} {1,-10} {2,-20}", item.PlayerId, item.PlayerName, item.CurrentPosition);
+//}
+//Console.ReadLine();
+
+var content = await _refit.PlayGame(
+    new GameMovesRequestModel
+    {
+        PlayerId = 6
+    });
 Console.WriteLine(content.Message);
-Console.WriteLine("\n{0,-5} {1,-10} {2,-20:C}", "Id", "Name", "Current Position");
-Console.WriteLine(new string('-', 35));
-foreach (var item in content.Data)
-{
-    Console.WriteLine("{0,-5} {1,-10} {2,-20}", item.PlayerId, item.PlayerName, item.CurrentPosition);
-}
+Console.WriteLine(content.CurrentCell);
 Console.ReadLine();

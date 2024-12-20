@@ -16,7 +16,7 @@ public class BaganMapResponseModel
 {
     public bool IsSuccess { get; set; }
     public string? Message { get; set; }
-    public BaganMapModel Data { get; set; }
+    public List<BaganMapModel> Data { get; set; }
 }
 
 public class PagodaModel

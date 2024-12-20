@@ -28,4 +28,12 @@ public class BaganMapRestClientService
         var content = response.Content!;
         return JsonConvert.DeserializeObject<TravelRouteModel>(content)!;
     }
+
+    public async Task<BagodaDetail> GetBagodaDetail(string id)
+    {
+        RestRequest request = new RestRequest($"{endpoint}/detail/{id}", Method.Get);
+        RestResponse response = await _restClient.ExecuteAsync(request);
+        var content = response.Content!;
+        return JsonConvert.DeserializeObject<BagodaDetail>(content)!;
+    }
 }

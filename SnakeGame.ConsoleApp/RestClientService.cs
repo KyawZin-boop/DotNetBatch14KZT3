@@ -26,4 +26,22 @@ public class RestClientService
         var content = response.Content!;
         return JsonConvert.DeserializeObject<PlayerListResponseModel>(content)!;
     }
+
+    public async Task<GameResponseModel> CreateGame(GameRequestModel requestModel)
+    {
+        RestRequest request = new RestRequest($"{endpoint}/Game", Method.Post);
+        request.AddJsonBody(requestModel);
+        RestResponse response = await _restClient.ExecuteAsync(request);
+        var content = response.Content!;
+        return JsonConvert.DeserializeObject<GameResponseModel>(content)!;
+    }
+
+    public async Task<GameMovesResponseModel> PlayGame(GameMovesRequestModel requestModel)
+    {
+        RestRequest request = new RestRequest($"{endpoint}/GameMoves", Method.Post);
+        request.AddJsonBody(requestModel);
+        RestResponse response = await _restClient.ExecuteAsync(request);
+        var content = response.Content!;
+        return JsonConvert.DeserializeObject<GameMovesResponseModel>(content)!;
+    }
 }

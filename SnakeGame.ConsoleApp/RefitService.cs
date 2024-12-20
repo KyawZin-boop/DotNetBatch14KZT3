@@ -18,9 +18,21 @@ public class RefitService
         _api = RestService.For<ISnakeGameApi>(domain);
     }
 
-    public async Task<PlayerListResponseModel> GetPlayer()
+    public async Task<PlayerListResponseModel> GetPlayers()
     {
-        var model = await _api.GetPlayer();
+        var model = await _api.GetPlayers();
+        return model;
+    }
+
+    public async Task<GameResponseModel> CreateGame(GameRequestModel requestModel)
+    {
+        var model = await _api.CreateGame(requestModel);
+        return model;
+    }
+
+    public async Task<GameMovesResponseModel> PlayGame(GameMovesRequestModel requestModel)
+    {
+        var model = await _api.PlayGame(requestModel);
         return model;
     }
 }
@@ -28,5 +40,11 @@ public class RefitService
 public interface ISnakeGameApi
 {
     [Get("/api/Player")]
-    Task<PlayerListResponseModel> GetPlayer();
+    Task<PlayerListResponseModel> GetPlayers();
+
+    [Post("/api/Game")]
+    Task<GameResponseModel> CreateGame(GameRequestModel requestModel);
+
+    [Post("/api/GameMoves")]
+    Task<GameMovesResponseModel> PlayGame(GameMovesRequestModel requestModel);
 }
