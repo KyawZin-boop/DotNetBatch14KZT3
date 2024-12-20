@@ -12,7 +12,7 @@ namespace DotNetBatch14KZT3.ConsoleApp4;
 
 public class BlogRestClientService
 {
-    private readonly string endpoint = "https://localhost:7015/api/blog";
+    private readonly string endpoint = "https://localhost:7066/api/blog";
     private readonly RestClient _restClient;
 
     public BlogRestClientService()

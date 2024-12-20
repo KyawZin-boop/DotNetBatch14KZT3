@@ -12,7 +12,7 @@ namespace DotNetBatch14KZT3.ConsoleApp4;
 
 public class BlogRefitService
 {
-    private readonly string domain = "https://localhost:7015";
+    private readonly string domain = "https://localhost:7066";
     private readonly IBlogApi _api;
 
     public BlogRefitService()
@@ -23,6 +23,10 @@ public class BlogRefitService
     public async Task<BlogListResponseModel> GetBlogs()
     {
         var model = await _api.GetBlogs();
+        foreach(var blog in model.Data)
+        {
+            Console.WriteLine(blog.blog_id, blog.blog_title, blog.blog_author, blog.blog_content);
+        }
         return model;
     }
 

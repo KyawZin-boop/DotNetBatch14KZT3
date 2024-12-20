@@ -27,6 +27,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetBatch14KZT3.ConsoleAp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SnakeGameKZT.RestApi", "SnakeGameKZT.RestApi\SnakeGameKZT.RestApi.csproj", "{3DDCB1B9-CADB-43F8-9801-AB9CB708F1A6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BurmaProjectIdeaHW.ConsoleApp", "BurmaProjectIdeaHW.ConsoleApp\BurmaProjectIdeaHW.ConsoleApp.csproj", "{666B6A75-463E-45D6-8FBF-2E931FA6FD6A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SnakeGame.ConsoleApp", "SnakeGame.ConsoleApp\SnakeGame.ConsoleApp.csproj", "{7DEFA7CA-D4FC-448A-ACCF-E16664B11116}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -81,6 +85,14 @@ Global
 		{3DDCB1B9-CADB-43F8-9801-AB9CB708F1A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3DDCB1B9-CADB-43F8-9801-AB9CB708F1A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3DDCB1B9-CADB-43F8-9801-AB9CB708F1A6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{666B6A75-463E-45D6-8FBF-2E931FA6FD6A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{666B6A75-463E-45D6-8FBF-2E931FA6FD6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{666B6A75-463E-45D6-8FBF-2E931FA6FD6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{666B6A75-463E-45D6-8FBF-2E931FA6FD6A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7DEFA7CA-D4FC-448A-ACCF-E16664B11116}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7DEFA7CA-D4FC-448A-ACCF-E16664B11116}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7DEFA7CA-D4FC-448A-ACCF-E16664B11116}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7DEFA7CA-D4FC-448A-ACCF-E16664B11116}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

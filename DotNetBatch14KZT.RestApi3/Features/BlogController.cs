@@ -12,7 +12,7 @@ namespace DotNetBatch14KZT.RestApi3.Features
 
         public BlogController()
         {
-            _blogService = new BlogService();
+            _blogService = new BlogEFCoreService();
         }
  
         [HttpGet]

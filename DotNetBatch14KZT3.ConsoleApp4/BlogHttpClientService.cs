@@ -11,7 +11,7 @@ namespace DotNetBatch14KZT3.ConsoleApp4;
 
 public class BlogHttpClientService
 {
-    private readonly string endpoint = "https://localhost:7015/api/blog";
+    private readonly string endpoint = "https://localhost:7066/api/blog";
     private readonly HttpClient _httpClient;
 
     public BlogHttpClientService()
