@@ -30,7 +30,7 @@ public class BaganMapRefitClientService
         return model;
     }
 
-    public async Task<BagodaDetail> GetBagodaDetail(string id)
+    public async Task<PagodaDetail> GetBagodaDetail(string id)
     {
         var model = await _api.GetBagodaDetail(id);
         return model;
@@ -46,5 +46,5 @@ public interface IBaganMapApi
     Task<TravelRouteModel> GetTravelRoute(string id);
 
     [Get("/bagan-map/detail/{id}")]
-    Task<BagodaDetail> GetBagodaDetail(string id);
+    Task<PagodaDetail> GetBagodaDetail(string id);
 }

@@ -32,10 +32,10 @@ public class BaganMapHttpClientService
         return JsonConvert.DeserializeObject<TravelRouteModel>(content)!;
     }
 
-    public async Task<BagodaDetail> GetBagodaDetail(string id)
+    public async Task<PagodaDetail> GetBagodaDetail(string id)
     {
         HttpResponseMessage response = await _httpClient.GetAsync($"{endpoint}/detail/{id}");
         var content = await response.Content.ReadAsStringAsync();
-        return JsonConvert.DeserializeObject<BagodaDetail>(content)!;
+        return JsonConvert.DeserializeObject<PagodaDetail>(content)!;
     }
 }

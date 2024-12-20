@@ -36,7 +36,7 @@ public class TravelRouteModel
     public List<PagodaModel>? PagodaList { get; set; }
 }
 
-public class BagodaDetail
+public class PagodaDetail
 {
     public string? Id { get; set; }
     public string? Description { get; set; }
