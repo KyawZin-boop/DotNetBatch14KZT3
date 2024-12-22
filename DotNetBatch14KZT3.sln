@@ -31,6 +31,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BurmaProjectIdeaHW.ConsoleA
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SnakeGame.ConsoleApp", "SnakeGame.ConsoleApp\SnakeGame.ConsoleApp.csproj", "{7DEFA7CA-D4FC-448A-ACCF-E16664B11116}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RepoDB.Shared", "RepoDB.Shared\RepoDB.Shared.csproj", "{BBC3D371-CD4B-4EC2-9B20-094CFD8E0685}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -93,6 +95,10 @@ Global
 		{7DEFA7CA-D4FC-448A-ACCF-E16664B11116}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7DEFA7CA-D4FC-448A-ACCF-E16664B11116}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7DEFA7CA-D4FC-448A-ACCF-E16664B11116}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BBC3D371-CD4B-4EC2-9B20-094CFD8E0685}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BBC3D371-CD4B-4EC2-9B20-094CFD8E0685}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BBC3D371-CD4B-4EC2-9B20-094CFD8E0685}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BBC3D371-CD4B-4EC2-9B20-094CFD8E0685}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
