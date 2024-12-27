@@ -33,6 +33,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SnakeGame.ConsoleApp", "Sna
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RepoDB.Shared", "RepoDB.Shared\RepoDB.Shared.csproj", "{BBC3D371-CD4B-4EC2-9B20-094CFD8E0685}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RepoDB.MinimalApi", "RepoDB.MinimalApi\RepoDB.MinimalApi.csproj", "{514B5A2A-8162-4C5A-97B0-1680952978F0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RepoDB.ConsoleApp", "RepoDB.ConsoleApp\RepoDB.ConsoleApp.csproj", "{07AEBD00-426E-4662-97BF-B77475C158DC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -99,6 +103,14 @@ Global
 		{BBC3D371-CD4B-4EC2-9B20-094CFD8E0685}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BBC3D371-CD4B-4EC2-9B20-094CFD8E0685}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BBC3D371-CD4B-4EC2-9B20-094CFD8E0685}.Release|Any CPU.Build.0 = Release|Any CPU
+		{514B5A2A-8162-4C5A-97B0-1680952978F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{514B5A2A-8162-4C5A-97B0-1680952978F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{514B5A2A-8162-4C5A-97B0-1680952978F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{514B5A2A-8162-4C5A-97B0-1680952978F0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{07AEBD00-426E-4662-97BF-B77475C158DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07AEBD00-426E-4662-97BF-B77475C158DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{07AEBD00-426E-4662-97BF-B77475C158DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{07AEBD00-426E-4662-97BF-B77475C158DC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
