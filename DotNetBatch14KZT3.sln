@@ -37,6 +37,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RepoDB.MinimalApi", "RepoDB
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RepoDB.ConsoleApp", "RepoDB.ConsoleApp\RepoDB.ConsoleApp.csproj", "{07AEBD00-426E-4662-97BF-B77475C158DC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InventoryManagement.RestApi", "InventoryManagement.RestApi\InventoryManagement.RestApi.csproj", "{02C0EBC9-A36B-42FD-A7F4-407341A1FA3F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InventoryManagement.Shared", "InventoryManagement.Shared\InventoryManagement.Shared.csproj", "{6A25F5AF-B6D9-4FCB-8BB6-EBAF1C308AE9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -111,6 +115,14 @@ Global
 		{07AEBD00-426E-4662-97BF-B77475C158DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{07AEBD00-426E-4662-97BF-B77475C158DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{07AEBD00-426E-4662-97BF-B77475C158DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{02C0EBC9-A36B-42FD-A7F4-407341A1FA3F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{02C0EBC9-A36B-42FD-A7F4-407341A1FA3F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{02C0EBC9-A36B-42FD-A7F4-407341A1FA3F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{02C0EBC9-A36B-42FD-A7F4-407341A1FA3F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6A25F5AF-B6D9-4FCB-8BB6-EBAF1C308AE9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A25F5AF-B6D9-4FCB-8BB6-EBAF1C308AE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A25F5AF-B6D9-4FCB-8BB6-EBAF1C308AE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A25F5AF-B6D9-4FCB-8BB6-EBAF1C308AE9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
