@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace InventoryManagement.Shared.Model
+namespace InventoryManagementDB.shared.Model
 {
     public class Product
     {
@@ -16,17 +16,10 @@ namespace InventoryManagement.Shared.Model
         public decimal Price { get; set; }
     }
 
-    public class ProdcutDTO
+    public class ProductDTO
     {
         public string ProductName { get; set; }
         public int Quantity { get; set; }
         public decimal Price { get; set; }
-    }
-
-        public class  ProductResponseModel
-    {
-        public string? Message { get; set; }
-        public bool IsSuccess { get; set; }
-        public object? Data { get; set; }
     }
 }

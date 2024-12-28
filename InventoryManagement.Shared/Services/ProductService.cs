@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using InventoryManagement.Shared.AppSettings;
-using InventoryManagement.Shared.Model;
+using InventoryManagementDB.shared.AppSettings;
+using InventoryManagementDB.shared.Model;
 using Microsoft.EntityFrameworkCore;
 
 namespace InventoryManagement.Shared.Services;
@@ -18,29 +18,29 @@ public class ProductService
         _db = new AppDbContext();
     }
 
-    public ProductResponseModel GetProducts()
+    public ResponseModel GetProducts()
     {
         var model = _db.Product.ToList();
         if(model is null)
         {
-            return new ProductResponseModel { Message = "Product not found."};
+            return new ResponseModel { Message = "Product not found."};
         }
 
-        return new ProductResponseModel { Message = "Success.", IsSuccess = true, Data = model };
+        return new ResponseModel { Message = "Success.", IsSuccess = true, Data = model };
     }
 
-    public ProductResponseModel GetProduct(Guid id)
+    public ResponseModel GetProduct(Guid id)
     {
         var model = _db.Product.Find(id);
         if (model is null)
         {
-            return new ProductResponseModel { Message = "Product not found."};
+            return new ResponseModel { Message = "Product not found."};
         }
 
-        return new ProductResponseModel { Message = "Success.", IsSuccess = true, Data = model };
+        return new ResponseModel { Message = "Success.", IsSuccess = true, Data = model };
     }
 
-    public ProductResponseModel AddProduct(ProdcutDTO requestModel)
+    public ResponseModel AddProduct(ProductDTO requestModel)
     {
         var model = new Product
         {
@@ -50,15 +50,15 @@ public class ProductService
         };
         _db.Product.Add(model);
         _db.SaveChanges();
-        return new ProductResponseModel { Message = "Product added successfully.", IsSuccess = true};
+        return new ResponseModel { Message = "Product added successfully.", IsSuccess = true};
     }
 
-    public ProductResponseModel UpdateProduct(Guid id, ProdcutDTO requestModel)
+    public ResponseModel UpdateProduct(Guid id, ProductDTO requestModel)
     {
         var model = _db.Product.AsNoTracking().FirstOrDefault(x => x.ProductId == id);
         if (model is null)
         {
-            return new ProductResponseModel { Message = "Product not found." };
+            return new ResponseModel { Message = "Product not found." };
         }
         model.ProductName = requestModel.ProductName;
         model.Quantity = requestModel.Quantity;
@@ -69,25 +69,25 @@ public class ProductService
 
         if (result == 0)
         {
-            return new ProductResponseModel { Message = "Product update failed." };
+            return new ResponseModel { Message = "Product update failed." };
         }
-        return new ProductResponseModel { Message = "Product updated successfully.", IsSuccess = true };
+        return new ResponseModel { Message = "Product updated successfully.", IsSuccess = true };
     }
 
-    public ProductResponseModel DeleteProduct(Guid id)
+    public ResponseModel DeleteProduct(Guid id)
     {
         var model = _db.Product.AsNoTracking().FirstOrDefault(x => x.ProductId == id);
         if (model is null)
         {
-            return new ProductResponseModel { Message = "Product not found." };
+            return new ResponseModel { Message = "Product not found." };
         }
         _db.Entry(model).State = EntityState.Deleted;
         var result = _db.SaveChanges();
 
         if (result == 0)
         {
-            return new ProductResponseModel { Message = "Product delete failed." };
+            return new ResponseModel { Message = "Product delete failed." };
         }
-        return new ProductResponseModel { Message = "Product deleted successfully.", IsSuccess = true };
+        return new ResponseModel { Message = "Product deleted successfully.", IsSuccess = true };
     }
 }

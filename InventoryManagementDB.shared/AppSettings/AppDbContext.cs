@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using InventoryManagement.Shared.Model;
+using InventoryManagementDB.shared.Model;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 
-namespace InventoryManagement.Shared.AppSettings
+namespace InventoryManagementDB.shared.AppSettings
 {
     public class AppDbContext : DbContext
     {
@@ -33,5 +33,6 @@ namespace InventoryManagement.Shared.AppSettings
             }
         }
         public DbSet<Product> Product { get; set; }
+        public DbSet<Order> Order { get; set; }
     }
 }
