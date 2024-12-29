@@ -11,4 +11,9 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\InventoryManagement.Shared\InventoryManagement.Shared.csproj" />
+    <ProjectReference Include="..\InventoryManagementDB.shared\InventoryManagementDB.shared.csproj" />
+  </ItemGroup>
+
 </Project>
