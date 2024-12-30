@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using InventoryManagementDB.shared.AppSettings;
-using InventoryManagementDB.shared.Model;
+using InventoryManagementDB.Shared.AppSettings;
+using InventoryManagementDB.Shared.Model;
 
 namespace InventoryManagement.Shared.Services;
 
@@ -64,7 +64,7 @@ public class OrderService
             return new ResponseModel { Message = "Order not found." };
         }
 
-        var item = order.Items.FirstOrDefault(x => x.ProductId == ItemId);
+        var item = order.Items.FirstOrDefault(x => x.ProductID == ItemId);
         if (item is null)
         {
             return new ResponseModel { Message = "Item not found in order." };

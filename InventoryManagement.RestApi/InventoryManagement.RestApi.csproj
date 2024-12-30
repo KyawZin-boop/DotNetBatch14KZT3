@@ -13,7 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\InventoryManagement.Shared\InventoryManagement.Shared.csproj" />
-    <ProjectReference Include="..\InventoryManagementDB.shared\InventoryManagementDB.shared.csproj" />
+    <ProjectReference Include="..\InventoryManagementDB.shared\InventoryManagementDB.Shared.csproj" />
   </ItemGroup>
 
 </Project>

@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using InventoryManagementDB.shared.AppSettings;
-using InventoryManagementDB.shared.Model;
+using InventoryManagementDB.Shared.AppSettings;
+using InventoryManagementDB.Shared.Model;
 using Microsoft.EntityFrameworkCore;
 
 namespace InventoryManagement.Shared.Services;
@@ -20,7 +20,7 @@ public class ProductService
 
     public ResponseModel GetProducts()
     {
-        var model = _db.Product.ToList();
+        var model = _db.Product.AsNoTracking().ToList();
         if(model is null)
         {
             return new ResponseModel { Message = "Product not found."};
@@ -31,7 +31,7 @@ public class ProductService
 
     public ResponseModel GetProduct(Guid id)
     {
-        var model = _db.Product.Find(id);
+        var model = _db.Product.AsNoTracking().FirstOrDefault(x => x.ProductID == id);
         if (model is null)
         {
             return new ResponseModel { Message = "Product not found."};
@@ -55,7 +55,7 @@ public class ProductService
 
     public ResponseModel UpdateProduct(Guid id, ProductDTO requestModel)
     {
-        var model = _db.Product.AsNoTracking().FirstOrDefault(x => x.ProductId == id);
+        var model = _db.Product.AsNoTracking().FirstOrDefault(x => x.ProductID == id);
         if (model is null)
         {
             return new ResponseModel { Message = "Product not found." };
@@ -76,7 +76,7 @@ public class ProductService
 
     public ResponseModel DeleteProduct(Guid id)
     {
-        var model = _db.Product.AsNoTracking().FirstOrDefault(x => x.ProductId == id);
+        var model = _db.Product.AsNoTracking().FirstOrDefault(x => x.ProductID == id);
         if (model is null)
         {
             return new ResponseModel { Message = "Product not found." };

@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using InventoryManagementDB.shared.AppSettings;
-using InventoryManagementDB.shared.Model;
+using InventoryManagementDB.Shared.AppSettings;
+using InventoryManagementDB.Shared.Model;
 
 namespace InventoryManagement.Shared.Services;
 
@@ -21,7 +21,7 @@ public class InventoryService
 
     public ResponseModel AddToInventory(Product inputModel)
     {
-        var item = inventory.FirstOrDefault(x => x.Item.ProductId == inputModel.ProductId);
+        var item = inventory.FirstOrDefault(x => x.Item.ProductID == inputModel.ProductID);
         if(item is not null)
         {
             item.Item.Quantity += inputModel.Quantity;
@@ -38,7 +38,7 @@ public class InventoryService
 
     public ResponseModel RemoveFromInventory(Guid id)
     {
-        var model = inventory.FirstOrDefault(x => x.Item.ProductId == id);
+        var model = inventory.FirstOrDefault(x => x.Item.ProductID == id);
         if (model is null)
         {
             return new ResponseModel { Message = "Product not found in inventory." };
@@ -49,7 +49,7 @@ public class InventoryService
 
     public ResponseModel UpdateInventoryItem(Guid id, ProductDTO inputModel)
     {
-        var item = inventory.FirstOrDefault(x => x.Item.ProductId == id);
+        var item = inventory.FirstOrDefault(x => x.Item.ProductID == id);
         if (item is null)
         {
             return new ResponseModel { Message = "Product not found in inventory." };

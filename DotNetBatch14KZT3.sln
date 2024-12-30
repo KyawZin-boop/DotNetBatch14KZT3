@@ -41,7 +41,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InventoryManagement.RestApi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InventoryManagement.Shared", "InventoryManagement.Shared\InventoryManagement.Shared.csproj", "{6A25F5AF-B6D9-4FCB-8BB6-EBAF1C308AE9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InventoryManagementDB.shared", "InventoryManagementDB.shared\InventoryManagementDB.shared.csproj", "{38A24F85-2111-47E0-AEC9-2C92C9B22689}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InventoryManagementDB.Shared", "InventoryManagementDB.shared\InventoryManagementDB.Shared.csproj", "{38A24F85-2111-47E0-AEC9-2C92C9B22689}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

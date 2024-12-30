@@ -26,7 +26,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\InventoryManagementDB.shared\InventoryManagementDB.shared.csproj" />
+	  <ProjectReference Include="..\InventoryManagementDB.shared\InventoryManagementDB.Shared.csproj" />
 	</ItemGroup>
 
 </Project>

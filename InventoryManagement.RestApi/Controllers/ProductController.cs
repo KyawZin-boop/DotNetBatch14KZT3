@@ -1,5 +1,5 @@
 ﻿using InventoryManagement.Shared.Services;
-using InventoryManagementDB.shared.Model;
+using InventoryManagementDB.Shared.Model;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,7 +16,7 @@ public class ProductController : ControllerBase
         _productService = new ProductService();
     }
 
-    [HttpGet("GetProducts")]
+    [HttpGet]
     public IActionResult GetProducts()
     {
         try
@@ -26,7 +26,7 @@ public class ProductController : ControllerBase
         }
         catch(Exception ex)
         {
-            return StatusCode(500, ex.Message);
+            return StatusCode(500, ex.Message.ToString());
         }
     }
 
