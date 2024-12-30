@@ -27,7 +27,7 @@ public class InventoryService
             item.Item.Quantity += inputModel.Quantity;
             return new ResponseModel { Message = "Product added to inventory successfully.", IsSuccess = true };
         }
-
+        
         var model = new Inventory
         {
             Item = inputModel
