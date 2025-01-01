@@ -32,6 +32,13 @@ public class AppDbContext : DbContext
             optionsBuilder.UseSqlServer(_connBuilder.ConnectionString);
         }
     }
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<Product>().ToTable("Tbl_Product");
+        modelBuilder.Entity<Order>().ToTable("Tbl_Order");
+    }
+
     public DbSet<Product> Product { get; set; }
     public DbSet<Order> Order { get; set; }
 }

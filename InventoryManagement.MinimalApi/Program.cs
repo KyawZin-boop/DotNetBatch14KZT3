@@ -1,3 +1,4 @@
+using InventoryManagement.MinimalApi.ProductEndpoints;
 using InventoryManagement.Shared.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -18,15 +19,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-ProductService productService = new ProductService();
-
-app.MapGet("/api/Product", () =>
-{
-    var model = productService.GetProducts();
-    return Results.Ok(model);
-})
-    .WithName("GetProducts")
-    .WithOpenApi();
+app.MapProductEndpoints();
 
 app.Run();
 

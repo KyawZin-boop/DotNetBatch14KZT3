@@ -45,6 +45,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InventoryManagementDB.Share
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InventoryManagement.MinimalApi", "InventoryManagement.MinimalApi\InventoryManagement.MinimalApi.csproj", "{D291BDB9-A415-46AC-8C88-AA0C1E181A5D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InventoryDB.Shared", "InventoryDB.Shared\InventoryDB.Shared.csproj", "{755BDD42-E5C6-468E-917B-B8B74DB947C3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InventoryManagementCaller.Console", "InventoryManagementCaller.Console\InventoryManagementCaller.Console.csproj", "{9FF8D514-9DA2-4791-944A-B6D4ECD450F8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -135,6 +139,14 @@ Global
 		{D291BDB9-A415-46AC-8C88-AA0C1E181A5D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D291BDB9-A415-46AC-8C88-AA0C1E181A5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D291BDB9-A415-46AC-8C88-AA0C1E181A5D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{755BDD42-E5C6-468E-917B-B8B74DB947C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{755BDD42-E5C6-468E-917B-B8B74DB947C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{755BDD42-E5C6-468E-917B-B8B74DB947C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{755BDD42-E5C6-468E-917B-B8B74DB947C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9FF8D514-9DA2-4791-944A-B6D4ECD450F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9FF8D514-9DA2-4791-944A-B6D4ECD450F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9FF8D514-9DA2-4791-944A-B6D4ECD450F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9FF8D514-9DA2-4791-944A-B6D4ECD450F8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

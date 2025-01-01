@@ -1,5 +1,5 @@
 ﻿using InventoryManagement.Shared.Services;
-using InventoryManagementDB.Shared.Model;
+using InventoryDB.Shared.Model;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 

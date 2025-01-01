@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using InventoryManagementDB.Shared.AppSettings;
-using InventoryManagementDB.Shared.Model;
+using InventoryDB.Shared.AppSettings;
+using InventoryDB.Shared.Model;
 using Microsoft.EntityFrameworkCore;
 
 namespace InventoryManagement.Shared.Services;
@@ -18,15 +18,15 @@ public class ProductService
         _db = new AppDbContext();
     }
 
-    public ResponseModel GetProducts()
+    public List<Product> GetProducts()
     {
         var model = _db.Product.AsNoTracking().ToList();
         if(model is null)
         {
-            return new ResponseModel { Message = "Product not found."};
+            throw new Exception("Product not found");
         }
 
-        return new ResponseModel { Message = "Success.", IsSuccess = true, Data = model };
+        return model;
     }
 
     public ResponseModel GetProduct(Guid id)

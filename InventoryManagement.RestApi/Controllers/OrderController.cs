@@ -1,5 +1,5 @@
 ﻿using InventoryManagement.Shared.Services;
-using InventoryManagementDB.Shared.Model;
+using InventoryDB.Shared.Model;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -30,19 +30,19 @@ namespace InventoryManagement.RestApi.Controllers
             }
         }
 
-        [HttpPost("CreateOrder")]
-        public IActionResult CreateOrder(List<Product> inputModel)
-        {
-            try
-            {
-                var result = _orderService.CreateOrder(inputModel);
-                return Ok(result);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, ex.Message);
-            }
-        }
+        //[HttpPost("CreateOrder")]
+        //public IActionResult CreateOrder(List<Product> inputModel)
+        //{
+        //    try
+        //    {
+        //        var result = _orderService.CreateOrder(inputModel);
+        //        return Ok(result);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return StatusCode(500, ex.Message);
+        //    }
+        //}
 
         [HttpPost("AddItemToOrder")]
         public IActionResult AddItemToOrder(Guid OrderId, Product product)

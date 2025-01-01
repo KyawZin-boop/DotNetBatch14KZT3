@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using InventoryManagementDB.Shared.AppSettings;
-using InventoryManagementDB.Shared.Model;
+using InventoryDB.Shared.AppSettings;
+using InventoryDB.Shared.Model;
 
 namespace InventoryManagement.Shared.Services;
 
