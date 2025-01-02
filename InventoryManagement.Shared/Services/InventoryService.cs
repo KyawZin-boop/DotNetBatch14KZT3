@@ -11,17 +11,16 @@ namespace InventoryManagement.Shared.Services;
 public class InventoryService
 {
     private readonly AppDbContext _db;
-    public List<Inventory> inventory;
+    public static List<Inventory> InventoryList = new List<Inventory>();
 
     public InventoryService()
     {
         _db = new AppDbContext();
-        inventory = new List<Inventory>();
     }
 
     public ResponseModel AddToInventory(Product inputModel)
     {
-        var item = inventory.FirstOrDefault(x => x.Item.ProductID == inputModel.ProductID);
+        var item = InventoryList.FirstOrDefault(x => x.Item.ProductID == inputModel.ProductID);
         if(item is not null)
         {
             item.Item.Quantity += inputModel.Quantity;
@@ -32,24 +31,24 @@ public class InventoryService
         {
             Item = inputModel
         };
-        inventory.Add(model);
-        return new ResponseModel { Message = "Product added to inventory successfully.", IsSuccess = true };
+        InventoryList.Add(model);
+        return new ResponseModel { Message = "Product added to inventory successfully.", IsSuccess = true,Data = InventoryList };
     }
 
     public ResponseModel RemoveFromInventory(Guid id)
     {
-        var model = inventory.FirstOrDefault(x => x.Item.ProductID == id);
+        var model = InventoryList.FirstOrDefault(x => x.Item.ProductID == id);
         if (model is null)
         {
             return new ResponseModel { Message = "Product not found in inventory." };
         }
-        inventory.Remove(model);
+        InventoryList.Remove(model);
         return new ResponseModel { Message = "Product removed from inventory successfully.", IsSuccess = true };
     }
 
     public ResponseModel UpdateInventoryItem(Guid id, ProductDTO inputModel)
     {
-        var item = inventory.FirstOrDefault(x => x.Item.ProductID == id);
+        var item = InventoryList.FirstOrDefault(x => x.Item.ProductID == id);
         if (item is null)
         {
             return new ResponseModel { Message = "Product not found in inventory." };
@@ -62,7 +61,7 @@ public class InventoryService
 
     public ResponseModel GetInventory()
     {
-        var model = inventory.ToList();
+        var model = InventoryList.ToList();
         if (model is null)
         {
             return new ResponseModel { Message = "Inventory not found." };

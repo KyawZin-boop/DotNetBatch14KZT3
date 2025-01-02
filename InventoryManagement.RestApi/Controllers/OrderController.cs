@@ -44,19 +44,19 @@ namespace InventoryManagement.RestApi.Controllers
         //    }
         //}
 
-        [HttpPost("AddItemToOrder")]
-        public IActionResult AddItemToOrder(Guid OrderId, Product product)
-        {
-            try
-            {
-                var result = _orderService.AddItemToOrder(OrderId, product);
-                return Ok(result);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, ex.Message);
-            }
-        }
+        //[HttpPost("AddItemToOrder")]
+        //public IActionResult AddItemToOrder(Guid OrderId, Product product)
+        //{
+        //    try
+        //    {
+        //        var result = _orderService.AddItemToOrder(OrderId, product);
+        //        return Ok(result);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return StatusCode(500, ex.Message);
+        //    }
+        //}
 
         [HttpPost("RemoveItemFromOrder")]
         public IActionResult RemoveItemFromOrder(Guid OrderId, Guid ItemId)

@@ -21,7 +21,7 @@ public class OrderService
     {
         var order = new Order
         {
-            Items = inputModel,
+            //Items = inputModel,
             TotalPrice = inputModel.Price * inputModel.Quantity,
         };
 
@@ -35,26 +35,26 @@ public class OrderService
         return new ResponseModel { Message = "Failed to create order." };
     }
 
-    public ResponseModel AddItemToOrder(Guid OrderId, Product product)
-    {
-        var order = _db.Order.FirstOrDefault(x => x.OrderID == OrderId);
-        if (order is null)
-        {
-            return new ResponseModel { Message = "Order not found." };
-        }
+    //public ResponseModel AddItemToOrder(Guid OrderId, Product product)
+    //{
+    //    var order = _db.Order.FirstOrDefault(x => x.OrderID == OrderId);
+    //    if (order is null)
+    //    {
+    //        return new ResponseModel { Message = "Order not found." };
+    //    }
 
-        //order.Items.Add(product);
-        order.TotalPrice += product.Price;
-        _db.Order.Update(order);
+    //    //order.Items.Add(product);
+    //    order.TotalPrice += product.Price;
+    //    _db.Order.Update(order);
 
-        var result = _db.SaveChanges();
-        if (result > 0)
-        {
-            return new ResponseModel { Message = "Item added to order successfully.", IsSuccess = true };
-        }
+    //    var result = _db.SaveChanges();
+    //    if (result > 0)
+    //    {
+    //        return new ResponseModel { Message = "Item added to order successfully.", IsSuccess = true };
+    //    }
 
-        return new ResponseModel { Message = "Failed to add item to order." };
-    }
+    //    return new ResponseModel { Message = "Failed to add item to order." };
+    //}
 
     public ResponseModel RemoveItemFromOrder(Guid OrderId, Guid ItemId)
     {
