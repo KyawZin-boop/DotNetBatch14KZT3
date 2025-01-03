@@ -21,7 +21,7 @@ public class OrderService
     {
         var order = new Order
         {
-            //Items = inputModel,
+            Items = inputModel,
             TotalPrice = inputModel.Price * inputModel.Quantity,
         };
 
@@ -43,7 +43,7 @@ public class OrderService
     //        return new ResponseModel { Message = "Order not found." };
     //    }
 
-    //    //order.Items.Add(product);
+    //    order.Items.Add(product);
     //    order.TotalPrice += product.Price;
     //    _db.Order.Update(order);
 
@@ -83,14 +83,14 @@ public class OrderService
         return new ResponseModel { Message = "Failed to remove item from order." };
     }
 
-    public ResponseModel GetOrderDetails(Guid OrderId)
+    public Order GetOrderDetails(Guid OrderId)
     {
         var order = _db.Order.FirstOrDefault(x => x.OrderID == OrderId);
         if (order is null)
         {
-            return new ResponseModel { Message = "Order not found." };
+            throw new Exception("Order not found.");
         }
 
-        return new ResponseModel { Message = "Success.", IsSuccess = true, Data = order };
+        return order;
     }
 }

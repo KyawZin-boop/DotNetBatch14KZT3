@@ -29,15 +29,15 @@ public class ProductService
         return model;
     }
 
-    public ResponseModel GetProduct(Guid id)
+    public Product GetProduct(Guid id)
     {
-        var model = _db.Product.AsNoTracking().FirstOrDefault(x => x.ProductID == id);
-        if (model is null)
+        var product = _db.Product.AsNoTracking().FirstOrDefault(x => x.ProductID == id);
+        if (product is null)
         {
-            return new ResponseModel { Message = "Product not found."};
+            throw new Exception("Product not found");
         }
 
-        return new ResponseModel { Message = "Success.", IsSuccess = true, Data = model };
+        return product;
     }
 
     public ResponseModel AddProduct(ProductDTO requestModel)

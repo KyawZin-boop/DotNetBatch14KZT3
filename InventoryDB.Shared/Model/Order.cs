@@ -12,6 +12,6 @@ public class Order
 {
     [Key]
     public Guid OrderID { get; set; } = Guid.NewGuid();
-    public string Items { get; set; }
+    public Product Items { get; set; }
     public decimal TotalPrice { get; set; }
 }

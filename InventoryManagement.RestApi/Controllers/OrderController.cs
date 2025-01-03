@@ -30,21 +30,21 @@ namespace InventoryManagement.RestApi.Controllers
             }
         }
 
-        //[HttpPost("CreateOrder")]
-        //public IActionResult CreateOrder(List<Product> inputModel)
-        //{
-        //    try
-        //    {
-        //        var result = _orderService.CreateOrder(inputModel);
-        //        return Ok(result);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return StatusCode(500, ex.Message);
-        //    }
-        //}
+        [HttpPost("CreateOrder")]
+        public IActionResult CreateOrder(Product inputModel)
+        {
+            try
+            {
+                var result = _orderService.CreateOrder(inputModel);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
 
-        //[HttpPost("AddItemToOrder")]
+        [HttpPost("AddItemToOrder")]
         //public IActionResult AddItemToOrder(Guid OrderId, Product product)
         //{
         //    try
@@ -58,7 +58,7 @@ namespace InventoryManagement.RestApi.Controllers
         //    }
         //}
 
-        [HttpPost("RemoveItemFromOrder")]
+        [HttpDelete("RemoveItemFromOrder")]
         public IActionResult RemoveItemFromOrder(Guid OrderId, Guid ItemId)
         {
             try

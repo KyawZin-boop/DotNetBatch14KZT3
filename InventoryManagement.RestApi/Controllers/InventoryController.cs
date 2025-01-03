@@ -17,7 +17,7 @@ namespace InventoryManagement.RestApi.Controllers
         }
 
         [HttpGet]
-        public IActionResult ListInventory()
+        public IActionResult GetInventory()
         {
             try
             {

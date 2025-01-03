@@ -8,14 +8,14 @@ using Refit;
 
 namespace InventoryManagementCaller.Console
 {
-    public class RefitService
+    public class ProductRefit
     {
         private readonly string domain = "https://localhost:7192";
-        private readonly IInventoryService _api;
+        private readonly IProductApi _api;
 
-        public RefitService()
+        public ProductRefit()
         {
-            _api = RestService.For<IInventoryService>(domain);
+            _api = RestService.For<IProductApi>(domain);
         }
 
         public async Task<List<Product>> GetProducts()
@@ -23,13 +23,28 @@ namespace InventoryManagementCaller.Console
             return await _api.GetProducts();
         }
 
-        public interface IInventoryService
+        public async Task<Product> GetProduct(Guid id)
+        {
+            return await _api.GetProduct(id);
+        }
+
+        public async Task<ResponseModel> AddProduct(ProductDTO product)
+        {
+            return await _api.AddProduct(product);
+        }
+
+        public async Task<ResponseModel> UpdateProduct(Guid id, ProductDTO product)
+        {
+            return await _api.UpdateProduct(id, product);
+        }
+
+        public interface IProductApi
         {
             [Get("/api/Product")]
             Task<List<Product>> GetProducts();
 
             [Get("/api/Product/{id}")]
-            Task<ResponseModel> GetProduct(Guid id);
+            Task<Product> GetProduct(Guid id);
 
             [Post("/api/Product/AddProduct")]
             Task<ResponseModel> AddProduct(ProductDTO product);

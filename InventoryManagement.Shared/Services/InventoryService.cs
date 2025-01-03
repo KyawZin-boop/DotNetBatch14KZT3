@@ -59,14 +59,14 @@ public class InventoryService
         return new ResponseModel { Message = "Product updated successfully.", IsSuccess = true };
     }
 
-    public ResponseModel GetInventory()
+    public List<Inventory> GetInventory()
     {
         var model = InventoryList.ToList();
         if (model is null)
         {
-            return new ResponseModel { Message = "Inventory not found." };
+           throw new Exception("Inventory not found.");
         }
 
-        return new ResponseModel { Message = "Success.", IsSuccess = true, Data = model };
+        return model;
     }
 }

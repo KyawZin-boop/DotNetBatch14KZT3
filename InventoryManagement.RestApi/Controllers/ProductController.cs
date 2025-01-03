@@ -35,13 +35,13 @@ public class ProductController : ControllerBase
     {
         try
         {
-            var product = _productService.GetProduct(id);
-            if(product is null)
+            var model = _productService.GetProduct(id);
+            if(model is null)
             {
                 return NotFound();
             }
 
-            return Ok(product);
+            return Ok(model);
         }
         catch(Exception ex)
         {
