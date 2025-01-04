@@ -10,7 +10,7 @@ namespace InventoryManagementCaller.Console
 {
     public class OrderRefit
     {
-        private readonly string domain = "https://localhost:7192";
+        private readonly string domain = "https://localhost:7152";
         private readonly IOrderApi _api;
 
         public OrderRefit()
@@ -35,7 +35,8 @@ namespace InventoryManagementCaller.Console
 
         public async Task<ResponseModel> CreateOrder(Product product)
         {
-            return await _api.CreateOrder(product);
+            var result = await _api.CreateOrder(product);
+            return result;
         }
 
         public interface IOrderApi
@@ -49,7 +50,7 @@ namespace InventoryManagementCaller.Console
             [Delete("/api/Order/RemoveItemFromOrder")]
             Task<ResponseModel> RemoveItemFromOrder(Guid id, Guid itemId);
 
-            [Put("/api/Order/CreateOrder")]
+            [Post("/api/Order/CreateOrder")]
             Task<ResponseModel> CreateOrder(Product product);
         }
     }

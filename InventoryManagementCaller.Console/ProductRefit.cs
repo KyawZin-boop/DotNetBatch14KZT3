@@ -10,7 +10,7 @@ namespace InventoryManagementCaller.Console
 {
     public class ProductRefit
     {
-        private readonly string domain = "https://localhost:7192";
+        private readonly string domain = "https://localhost:7152";
         private readonly IProductApi _api;
 
         public ProductRefit()
@@ -35,7 +35,8 @@ namespace InventoryManagementCaller.Console
 
         public async Task<ResponseModel> UpdateProduct(Guid id, ProductDTO product)
         {
-            return await _api.UpdateProduct(id, product);
+            var result = await _api.UpdateProduct(id, product);
+            return result;
         }
 
         public interface IProductApi
@@ -49,7 +50,7 @@ namespace InventoryManagementCaller.Console
             [Post("/api/Product/AddProduct")]
             Task<ResponseModel> AddProduct(ProductDTO product);
 
-            [Post("/api/Product/UpdateProduct")]
+            [Patch("/api/Product/UpdateProduct")]
             Task<ResponseModel> UpdateProduct(Guid id, ProductDTO product);
 
             [Delete("/api/Product/DeleteProduct")]

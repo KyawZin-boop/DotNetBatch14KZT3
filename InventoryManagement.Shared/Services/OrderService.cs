@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using InventoryDB.Shared.AppSettings;
 using InventoryDB.Shared.Model;
+using Newtonsoft.Json;
 
 namespace InventoryManagement.Shared.Services;
 
@@ -21,7 +23,7 @@ public class OrderService
     {
         var order = new Order
         {
-            Items = inputModel,
+            Items = JsonConvert.SerializeObject(inputModel),
             TotalPrice = inputModel.Price * inputModel.Quantity,
         };
 

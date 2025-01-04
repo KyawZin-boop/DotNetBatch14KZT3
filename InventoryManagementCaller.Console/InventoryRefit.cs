@@ -11,7 +11,7 @@ namespace InventoryManagementCaller.Console
 {
     public class InventoryRefit
     {
-        private readonly string domain = "https://localhost:7192";
+        private readonly string domain = "https://localhost:7152";
         private readonly IInventoryApi _api;
 
         public InventoryRefit()

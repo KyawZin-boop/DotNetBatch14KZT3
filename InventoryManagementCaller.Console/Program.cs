@@ -141,13 +141,13 @@ async void ShowProduct()
 {
 
     var model = await productService.GetProducts();
-    Console.WriteLine("{0,-10} {1,-20} {2,-10} {3,-10:C}", "ID", "Name", "Stock", "Price");
-    Console.WriteLine(new string('-', 50));
+    Console.WriteLine("{0,-40} {1,-20} {2,-10} {3,-10:C}", "ID", "Name", "Stock", "Price");
+    Console.WriteLine(new string('-', 80));
 
     Console.ForegroundColor = ConsoleColor.Green;
     foreach (var product in model)
     {
-        Console.WriteLine("{0,-10} {1,-20} {2,-10} {3,-10} {4,-10:C}", product.ProductID!, product.ProductName, product.Quantity, product.Price);
+        Console.WriteLine("{0,-40} {1,-20} {2,-10} {3,-10}", product.ProductID!, product.ProductName, product.Quantity, product.Price);
     }
     Console.ForegroundColor = ConsoleColor.Blue;
     Console.WriteLine();
@@ -172,11 +172,11 @@ async void EditProduct()
             break;
         }
 
-        Console.Write("Enter new Name ");
+        Console.WriteLine("Enter new Name ");
         string editName = Console.ReadLine()!;
         if (!string.IsNullOrWhiteSpace(editName)) item.ProductName = editName;
 
-        Console.Write("Enter new Stock ");
+        Console.WriteLine("Enter new Stock ");
         string editStock = Console.ReadLine()!;
         if (!int.TryParse(editStock, out int stock))
         {
@@ -185,7 +185,7 @@ async void EditProduct()
         }
         item!.Quantity = Convert.ToInt32(editStock);
 
-        Console.Write("Enter new Price ");
+        Console.WriteLine("Enter new Price ");
         string editPrice = Console.ReadLine()!;
         if (!Decimal.TryParse(editPrice, out decimal price))
         {
@@ -202,6 +202,7 @@ async void EditProduct()
         };
         var response = await productService.UpdateProduct(editId, editProduct);
         Console.WriteLine(response.Message);
+        break;
     }
 }
 
@@ -357,6 +358,10 @@ async void CreateOrder()
             Console.WriteLine("Invalid Input!");
             break;
         }
+        
+        Console.WriteLine("Please Enter the product Name");
+        var productName = Console.ReadLine();
+
         Console.Write("Enter quantity: ");
         if (!int.TryParse(Console.ReadLine(), out int quantity))
         {
@@ -374,6 +379,7 @@ async void CreateOrder()
         var product = new InventoryDB.Shared.Model.Product
         {
             ProductID = itemId,
+            ProductName = productName,
             Quantity = quantity,
             Price = itemPrice
         };
@@ -422,7 +428,7 @@ async void RemoveItemFromOrder()
     while (true)
     {
         Console.WriteLine("Please Enter the order ID");
-        if (!decimal.TryParse(Console.ReadLine(), out decimal orderID))
+        if (!Guid.TryParse(Console.ReadLine(), out Guid orderID))
         {
             Console.WriteLine("Invalid Input!");
             break;
