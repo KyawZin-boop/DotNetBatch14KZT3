@@ -2,7 +2,7 @@
 using InventoryManagement.Shared.Services;
 using Microsoft.AspNetCore.Http.HttpResults;
 
-namespace InventoryManagement.MinimalApi.ProductEndpoints;
+namespace InventoryManagement.MinimalApi.Endpoints;
 
 public static class ProductEndpoints
 {

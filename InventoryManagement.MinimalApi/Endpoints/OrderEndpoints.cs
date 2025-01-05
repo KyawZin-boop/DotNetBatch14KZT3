@@ -1,7 +1,7 @@
 ﻿using InventoryDB.Shared.Model;
 using InventoryManagement.Shared.Services;
 
-namespace InventoryManagement.MinimalApi.OrderEndpoints
+namespace InventoryManagement.MinimalApi.Endpoints
 {
     public static class OrderEndpoints
     {

@@ -1,4 +1,4 @@
-using InventoryManagement.MinimalApi.ProductEndpoints;
+using InventoryManagement.MinimalApi.Endpoints;
 using InventoryManagement.Shared.Services;
 
 var builder = WebApplication.CreateBuilder(args);
