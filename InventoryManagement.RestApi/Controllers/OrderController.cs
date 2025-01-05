@@ -31,7 +31,7 @@ namespace InventoryManagement.RestApi.Controllers
         }
 
         [HttpPost("CreateOrder")]
-        public IActionResult CreateOrder(Product inputModel)
+        public IActionResult CreateOrder(List<Product> inputModel)
         {
             try
             {
@@ -45,18 +45,18 @@ namespace InventoryManagement.RestApi.Controllers
         }
 
         [HttpPost("AddItemToOrder")]
-        //public IActionResult AddItemToOrder(Guid OrderId, Product product)
-        //{
-        //    try
-        //    {
-        //        var result = _orderService.AddItemToOrder(OrderId, product);
-        //        return Ok(result);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return StatusCode(500, ex.Message);
-        //    }
-        //}
+        public IActionResult AddItemToOrder(Guid OrderId, Product product)
+        {
+            try
+            {
+                var result = _orderService.AddItemToOrder(OrderId, product);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
 
         [HttpDelete("RemoveItemFromOrder")]
         public IActionResult RemoveItemFromOrder(Guid OrderId, Guid ItemId)
