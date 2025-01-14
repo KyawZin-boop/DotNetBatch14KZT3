@@ -1,0 +1,28 @@
+﻿@model List<BlogModel>
+
+	@{
+		var count = 0;
+	}
+
+<h1>Hello this is Blog Page</h1>
+
+<table>
+	<thead>
+		<tr>
+			<td>No.</td>
+			<td>Title</td>
+			<td>Author</td>
+			<td>Content</td>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach(var blog in Model){
+			<tr>
+				<td>@(++count)</td>
+				<td>@blog.blog_title</td>
+				<td>@blog.blog_author</td>
+				<td>@blog.blog_content</td>
+			</tr>
+		}
+	</tbody>
+</table>

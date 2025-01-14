@@ -49,6 +49,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InventoryDB.Shared", "Inven
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InventoryManagementCaller.Console", "InventoryManagementCaller.Console\InventoryManagementCaller.Console.csproj", "{9FF8D514-9DA2-4791-944A-B6D4ECD450F8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetCore.MVC", "DotNetCore.MVC\DotNetCore.MVC.csproj", "{C1159648-8033-4798-9987-ADD51DA77B6A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -147,6 +149,10 @@ Global
 		{9FF8D514-9DA2-4791-944A-B6D4ECD450F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9FF8D514-9DA2-4791-944A-B6D4ECD450F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9FF8D514-9DA2-4791-944A-B6D4ECD450F8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C1159648-8033-4798-9987-ADD51DA77B6A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C1159648-8033-4798-9987-ADD51DA77B6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C1159648-8033-4798-9987-ADD51DA77B6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C1159648-8033-4798-9987-ADD51DA77B6A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
