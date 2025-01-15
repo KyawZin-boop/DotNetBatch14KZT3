@@ -1,0 +1,16 @@
+﻿@model BlogModel
+
+
+<div class="container">
+	<h1 class="text-center my-3">Add A New Blog</h1>
+
+	<form action="/Blog/Save" method="post">
+		<label class="form-label">Title</label>
+		<input class="form-control" name="blog_title" />
+		<label class="form-label">Author</label>
+		<input class="form-control" name="blog_author" />
+		<label class="form-label">Content</label>
+		<input class="form-control" name="blog_content" />
+		<button type="submit" class="btn btn-outline-success">Add Blog</button>
+	</form>
+</div>

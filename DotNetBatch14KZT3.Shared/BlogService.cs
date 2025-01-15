@@ -67,7 +67,7 @@ public class BlogService : IBlogService
         return model;
     }
 
-    public BlogResponseModel CreateBlog(BlogModel requestModel)
+    public BlogResponseModel CreateBlog(BlogDTO requestModel)
     {
         string query = $@"INSERT INTO [dbo].[tbl_blog]
                             ([blog_title],[blog_author],[blog_content])
@@ -160,73 +160,73 @@ public class BlogService : IBlogService
         return model;
     }
 
-    public BlogResponseModel UpsertBlog(BlogModel requestModel)
-    {
-        BlogResponseModel model = new BlogResponseModel();
-        var item = GetBlog(requestModel.blog_id!);
+    //public BlogResponseModel UpsertBlog(BlogModel requestModel)
+    //{
+    //    BlogResponseModel model = new BlogResponseModel();
+    //    var item = GetBlog(requestModel.blog_id!);
 
-        if (item is not null)
-        {
-            string conditions = string.Empty;
+    //    if (item is not null)
+    //    {
+    //        string conditions = string.Empty;
 
-            if (!string.IsNullOrEmpty(requestModel.blog_title))
-            {
-                conditions += " [blog_title] = @blog_title, ";
-            }
-            if (!string.IsNullOrEmpty(requestModel.blog_author))
-            {
-                conditions += " [blog_author] = @blog_author, ";
-            }
-            if (!string.IsNullOrEmpty(requestModel.blog_content))
-            {
-                conditions += " [blog_content] = @blog_content, ";
-            }
-            if (conditions.Length == 0)
-            {
-                throw new Exception("Invalid Parameters.");
-            }
+    //        if (!string.IsNullOrEmpty(requestModel.blog_title))
+    //        {
+    //            conditions += " [blog_title] = @blog_title, ";
+    //        }
+    //        if (!string.IsNullOrEmpty(requestModel.blog_author))
+    //        {
+    //            conditions += " [blog_author] = @blog_author, ";
+    //        }
+    //        if (!string.IsNullOrEmpty(requestModel.blog_content))
+    //        {
+    //            conditions += " [blog_content] = @blog_content, ";
+    //        }
+    //        if (conditions.Length == 0)
+    //        {
+    //            throw new Exception("Invalid Parameters.");
+    //        }
 
-            conditions = conditions.Substring(0, conditions.Length - 2);
+    //        conditions = conditions.Substring(0, conditions.Length - 2);
 
-            string query = $@"UPDATE [dbo].[tbl_blog]
-                        SET {conditions}
-                        WHERE blog_id = @blog_id";
+    //        string query = $@"UPDATE [dbo].[tbl_blog]
+    //                    SET {conditions}
+    //                    WHERE blog_id = @blog_id";
 
-            SqlConnection con = new SqlConnection(_conntectionBuilder.ConnectionString);
-            con.Open();
+    //        SqlConnection con = new SqlConnection(_conntectionBuilder.ConnectionString);
+    //        con.Open();
 
-            SqlCommand cmd = new SqlCommand(query, con);
+    //        SqlCommand cmd = new SqlCommand(query, con);
 
-            cmd.Parameters.AddWithValue("@blog_id", requestModel.blog_id);
-            if (!string.IsNullOrEmpty(requestModel.blog_title))
-            {
-                cmd.Parameters.AddWithValue("@blog_title", requestModel.blog_title);
-            }
-            if (!string.IsNullOrEmpty(requestModel.blog_author))
-            {
-                cmd.Parameters.AddWithValue("@blog_author", requestModel.blog_author);
-            }
-            if (!string.IsNullOrEmpty(requestModel.blog_content))
-            {
-                cmd.Parameters.AddWithValue("@blog_content", requestModel.blog_content);
-            }
+    //        cmd.Parameters.AddWithValue("@blog_id", requestModel.blog_id);
+    //        if (!string.IsNullOrEmpty(requestModel.blog_title))
+    //        {
+    //            cmd.Parameters.AddWithValue("@blog_title", requestModel.blog_title);
+    //        }
+    //        if (!string.IsNullOrEmpty(requestModel.blog_author))
+    //        {
+    //            cmd.Parameters.AddWithValue("@blog_author", requestModel.blog_author);
+    //        }
+    //        if (!string.IsNullOrEmpty(requestModel.blog_content))
+    //        {
+    //            cmd.Parameters.AddWithValue("@blog_content", requestModel.blog_content);
+    //        }
 
-            int result = cmd.ExecuteNonQuery();
+    //        int result = cmd.ExecuteNonQuery();
 
-            con.Close();
+    //        con.Close();
 
-            string message = result > 0 ? "Update Success." : "Update Fail!";
+    //        string message = result > 0 ? "Update Success." : "Update Fail!";
 
-            model.IsSuccess = result > 0;
-            model.Message = message;
-        }
-        else if (item is null)
-        {
-            model = CreateBlog(requestModel);
-        }
+    //        model.IsSuccess = result > 0;
+    //        model.Message = message;
+    //    }
+    //    else if (item is null)
+    //    {
+    //        model = CreateBlog(requestModel);
+    //    }
 
-        return model;
-    }
+    //    return model;
+    //}
 
     public BlogResponseModel DeleteBlog(string id)
     {

@@ -10,9 +10,16 @@ public class BlogEFCoreService : IBlogService
     {
         _db = new AppDbContext();
     }
-    public BlogResponseModel CreateBlog(BlogModel requestModel)
+    public BlogResponseModel CreateBlog(BlogDTO requestModel)
     {
-        _db.Add(requestModel);
+        var blog = new BlogModel
+        {
+            blog_id = Guid.NewGuid().ToString(),
+            blog_title = requestModel.blog_title,
+            blog_author = requestModel.blog_author,
+            blog_content = requestModel.blog_content,
+        };
+        _db.Blogs.Add(blog);
         var result = _db.SaveChanges();
 
         string message = result > 0 ? "Create Success." : "Create Fail!";
@@ -94,38 +101,38 @@ public class BlogEFCoreService : IBlogService
         return model;
     }
 
-    public BlogResponseModel UpsertBlog(BlogModel requestModel)
-    {
-        BlogResponseModel model = new BlogResponseModel();
+    //public BlogResponseModel UpsertBlog(BlogModel requestModel)
+    //{
+    //    BlogResponseModel model = new BlogResponseModel();
 
-        var item = _db.Blogs.AsNoTracking().FirstOrDefault(x => x.blog_id == requestModel.blog_id);
-        if (item is not null)
-        {
-            if (!string.IsNullOrEmpty(requestModel.blog_title))
-            {
-                item.blog_title = requestModel.blog_title;
-            }
-            if (!string.IsNullOrEmpty(requestModel.blog_author))
-            {
-                item.blog_author = requestModel.blog_author;
-            }
-            if (!string.IsNullOrEmpty(requestModel.blog_content))
-            {
-                item.blog_content = requestModel.blog_content;
-            }
+    //    var item = _db.Blogs.AsNoTracking().FirstOrDefault(x => x.blog_id == requestModel.blog_id);
+    //    if (item is not null)
+    //    {
+    //        if (!string.IsNullOrEmpty(requestModel.blog_title))
+    //        {
+    //            item.blog_title = requestModel.blog_title;
+    //        }
+    //        if (!string.IsNullOrEmpty(requestModel.blog_author))
+    //        {
+    //            item.blog_author = requestModel.blog_author;
+    //        }
+    //        if (!string.IsNullOrEmpty(requestModel.blog_content))
+    //        {
+    //            item.blog_content = requestModel.blog_content;
+    //        }
 
-            _db.Entry(item).State = EntityState.Modified;
-            var result = _db.SaveChanges();
+    //        _db.Entry(item).State = EntityState.Modified;
+    //        var result = _db.SaveChanges();
 
-            string message = result > 0 ? "Update Success." : "Update Fail!";
-            model.IsSuccess = result > 0;
-            model.Message = message;
-        }
-        else if (item is null)
-        {
-            model = CreateBlog(requestModel);
-        }
+    //        string message = result > 0 ? "Update Success." : "Update Fail!";
+    //        model.IsSuccess = result > 0;
+    //        model.Message = message;
+    //    }
+    //    else if (item is null)
+    //    {
+    //        model = CreateBlog(requestModel);
+    //    }
 
-        return model;
-    }
+    //    return model;
+    //}
 }

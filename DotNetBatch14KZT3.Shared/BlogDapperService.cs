@@ -9,7 +9,7 @@ public class BlogDapperService : IBlogService
 {
     private readonly SqlConnectionStringBuilder _connectionBuilder = new SqlConnectionStringBuilder();
 
-    public BlogResponseModel CreateBlog(BlogModel requestModel)
+    public BlogResponseModel CreateBlog(BlogDTO requestModel)
     {
         string query = $@"INSERT INTO [dbo].[tbl_blog]
                             ([blog_title],[blog_author],[blog_content])
@@ -100,31 +100,31 @@ public class BlogDapperService : IBlogService
         return model;
     }
 
-    public BlogResponseModel UpsertBlog(BlogModel requestModel)
-    {
-        BlogResponseModel model = new BlogResponseModel();
+    //public BlogResponseModel UpsertBlog(BlogModel requestModel)
+    //{
+    //    BlogResponseModel model = new BlogResponseModel();
 
-        var item = GetBlog(requestModel.blog_id);
-        if (item is not null)
-        {
-            string query = @"UPDATE [dbo].[tbl_blog]
-                        SET [blog_title] = @blog_title,
-                            [blog_author] = @blog_author,
-                            [blog_content] = @blog_content
-                        WHERE blog_id = @blog_id";
+    //    var item = GetBlog(requestModel.blog_id);
+    //    if (item is not null)
+    //    {
+    //        string query = @"UPDATE [dbo].[tbl_blog]
+    //                    SET [blog_title] = @blog_title,
+    //                        [blog_author] = @blog_author,
+    //                        [blog_content] = @blog_content
+    //                    WHERE blog_id = @blog_id";
 
-            using IDbConnection db = new SqlConnection(_connectionBuilder.ConnectionString);
-            var result = db.Execute(query, requestModel);
+    //        using IDbConnection db = new SqlConnection(_connectionBuilder.ConnectionString);
+    //        var result = db.Execute(query, requestModel);
 
-            string message = result > 0 ? "Update Success." : "Update Fail!";
-            model.IsSuccess = result > 0;
-            model.Message = message;
-        }
-        else if (item is null)
-        {
-            model = CreateBlog(requestModel);
-        }
+    //        string message = result > 0 ? "Update Success." : "Update Fail!";
+    //        model.IsSuccess = result > 0;
+    //        model.Message = message;
+    //    }
+    //    else if (item is null)
+    //    {
+    //        model = CreateBlog(requestModel);
+    //    }
 
-        return model;
-    }
+    //    return model;
+    //}
 }

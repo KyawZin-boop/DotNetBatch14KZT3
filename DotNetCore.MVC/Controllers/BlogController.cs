@@ -19,5 +19,22 @@ namespace DotNetCore.MVC.Controllers
 
             return View("BlogIndex", lst);
         }
+
+        [ActionName("Create")]
+        public IActionResult CreateBlog()
+        {
+            return View("CreateBlog", new BlogModel());
+        }
+
+        [HttpPost]
+        [ActionName("Save")]
+        public IActionResult SaveBlog(BlogDTO model)
+        {
+            var response = _service.CreateBlog(model);
+            ViewBag.isSuccess = response.IsSuccess;
+            ViewBag.message = response.Message;
+
+            return View("CreateBlog");
+        }
     }
 }

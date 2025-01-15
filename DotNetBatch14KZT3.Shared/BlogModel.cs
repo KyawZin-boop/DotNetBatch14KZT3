@@ -14,6 +14,13 @@ public class BlogModel
 
 }
 
+public class BlogDTO
+{
+    public string? blog_title { get; set; }
+    public string? blog_author { get; set; }
+    public string? blog_content { get; set; }
+}
+
 public class BlogResponseModel
 {
     public bool IsSuccess { get; set; }
