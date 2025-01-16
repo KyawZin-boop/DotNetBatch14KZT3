@@ -14,7 +14,7 @@ public class BlogService : IBlogService
         TrustServerCertificate = true,
     };
 
-    public List<BlogModel> GetBlogs()
+    public async Task<List<BlogModel>> GetBlogs()
     {
         SqlConnection con = new SqlConnection(_conntectionBuilder.ConnectionString);
         con.Open();
@@ -41,7 +41,7 @@ public class BlogService : IBlogService
         return lst;
     }
 
-    public BlogModel GetBlog(string id)
+    public async Task<BlogModel> GetBlog(string id)
     {
         SqlConnection con = new SqlConnection(_conntectionBuilder.ConnectionString);
         con.Open();
@@ -67,7 +67,7 @@ public class BlogService : IBlogService
         return model;
     }
 
-    public BlogResponseModel CreateBlog(BlogDTO requestModel)
+    public async Task<BlogResponseModel> CreateBlog(BlogDTO requestModel)
     {
         string query = $@"INSERT INTO [dbo].[tbl_blog]
                             ([blog_title],[blog_author],[blog_content])
@@ -92,7 +92,7 @@ public class BlogService : IBlogService
         return model;
     }
 
-    public BlogResponseModel UpdateBlog(BlogModel requestModel)
+    public async Task<BlogResponseModel> UpdateBlog(BlogModel requestModel)
     {
         var item = GetBlog(requestModel.blog_id);
         if (item is null)
@@ -228,7 +228,7 @@ public class BlogService : IBlogService
     //    return model;
     //}
 
-    public BlogResponseModel DeleteBlog(string id)
+    public async Task<BlogResponseModel> DeleteBlog(string id)
     {
         SqlConnection con = new SqlConnection(_conntectionBuilder.ConnectionString);
         con.Open();

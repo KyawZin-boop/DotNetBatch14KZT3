@@ -1,0 +1,15 @@
+﻿@model BlogModel
+
+<div class="container">
+	<h1 class="text-center my-3">Edit Blog</h1>
+
+	<form action="/Blog/Update/@Model.blog_id" method="post">
+		<label class="form-label">Title</label>
+		<input class="form-control" name="blog_title" value="@Model.blog_title"/>
+		<label class="form-label">Author</label>
+		<input class="form-control" name="blog_author" value="@Model.blog_author"/>
+		<label class="form-label">Content</label>
+		<input class="form-control" name="blog_content" value="@Model.blog_content"/>
+		<button type="submit" class="btn btn-outline-success mt-3">Save Changes</button>
+	</form>
+</div>

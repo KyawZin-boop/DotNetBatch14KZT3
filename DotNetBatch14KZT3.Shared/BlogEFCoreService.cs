@@ -6,11 +6,12 @@ public class BlogEFCoreService : IBlogService
 {
     private readonly AppDbContext _db;
 
-    public BlogEFCoreService()
+    public BlogEFCoreService(AppDbContext db)
     {
-        _db = new AppDbContext();
+        _db = db;
     }
-    public BlogResponseModel CreateBlog(BlogDTO requestModel)
+
+    public async Task<BlogResponseModel> CreateBlog(BlogDTO requestModel)
     {
         var blog = new BlogModel
         {
@@ -19,7 +20,7 @@ public class BlogEFCoreService : IBlogService
             blog_author = requestModel.blog_author,
             blog_content = requestModel.blog_content,
         };
-        _db.Blogs.Add(blog);
+        await _db.Blogs.AddAsync(blog);
         var result = _db.SaveChanges();
 
         string message = result > 0 ? "Create Success." : "Create Fail!";
@@ -30,9 +31,9 @@ public class BlogEFCoreService : IBlogService
         return model;
     }
 
-    public BlogResponseModel DeleteBlog(string id)
+    public async Task<BlogResponseModel> DeleteBlog(string id)
     {
-        var item = _db.Blogs.AsNoTracking().FirstOrDefault(x => x.blog_id == id);
+        var item = await _db.Blogs.AsNoTracking().FirstOrDefaultAsync(x => x.blog_id == id);
         if (item is null)
         {
             return new BlogResponseModel
@@ -53,21 +54,21 @@ public class BlogEFCoreService : IBlogService
         return model;
     }
 
-    public BlogModel GetBlog(string id)
+    public async Task<BlogModel> GetBlog(string id)
     {
-        var item = _db.Blogs.AsNoTracking().FirstOrDefault(x => x.blog_id == id);
+        var item = await _db.Blogs.AsNoTracking().FirstOrDefaultAsync(x => x.blog_id == id);
         return item!;
     }
 
-    public List<BlogModel> GetBlogs()
+    public async Task<List<BlogModel>> GetBlogs()
     {
-        List<BlogModel> lst = _db.Blogs.AsNoTracking().ToList();
+        List<BlogModel> lst = await _db.Blogs.AsNoTracking().ToListAsync();
         return lst;
     }
 
-    public BlogResponseModel UpdateBlog(BlogModel requestModel)
+    public async Task<BlogResponseModel> UpdateBlog(BlogModel requestModel)
     {
-        var item = _db.Blogs.AsNoTracking().FirstOrDefault(x => x.blog_id == requestModel.blog_id);
+        var item = await _db.Blogs.AsNoTracking().FirstOrDefaultAsync(x => x.blog_id == requestModel.blog_id);
         if (item is null)
         {
             return new BlogResponseModel

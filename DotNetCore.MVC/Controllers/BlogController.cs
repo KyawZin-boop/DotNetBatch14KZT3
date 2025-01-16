@@ -7,15 +7,15 @@ namespace DotNetCore.MVC.Controllers
     {
         private readonly IBlogService _service;
 
-        public BlogController()
+        public BlogController(IBlogService service)
         {
-            _service = new BlogEFCoreService();
+            _service = service;
         }
 
         [ActionName("Index")]
-        public IActionResult BlogIndex()
+        public async Task<IActionResult> BlogIndex()
         {
-            var lst = _service.GetBlogs();
+            var lst = await _service.GetBlogs();
 
             return View("BlogIndex", lst);
         }
@@ -28,13 +28,43 @@ namespace DotNetCore.MVC.Controllers
 
         [HttpPost]
         [ActionName("Save")]
-        public IActionResult SaveBlog(BlogDTO model)
+        public async Task<IActionResult> SaveBlog(BlogDTO model)
         {
-            var response = _service.CreateBlog(model);
-            ViewBag.isSuccess = response.IsSuccess;
-            ViewBag.message = response.Message;
+            var response = await _service.CreateBlog(model);
+            TempData["isSuccess"] = response.IsSuccess;
+            TempData["message"] = response.Message;
+            ViewBag.isSuccess = response.Message;
 
-            return View("CreateBlog");
+            return RedirectToAction("Index");
+        }
+
+        [ActionName("Edit")]
+        public async Task<IActionResult> EditBlog(string id)
+        {
+            var blog = await _service.GetBlog(id);
+            return View("EditBlog", blog);
+        }
+
+        [HttpPost]
+        [ActionName("Update")]
+        public async Task<IActionResult> UpdateBlog(string id,BlogModel requestModel)
+        {
+            requestModel.blog_id = id;
+            var response = await _service.UpdateBlog(requestModel);
+            TempData["isSuccess"] = response.IsSuccess;
+            TempData["message"] = response.Message;
+
+            return RedirectToAction("Index");
+        }
+
+        [ActionName("Delete")]
+        public async Task<IActionResult> DeleteBlog(string id)
+        {
+            var response = await _service.DeleteBlog(id);
+            TempData["isSuccess"] = response.IsSuccess;
+            TempData["message"] = response.Message;
+
+            return RedirectToAction("Index");
         }
     }
 }

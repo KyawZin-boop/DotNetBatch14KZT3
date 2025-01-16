@@ -2,10 +2,10 @@
 
 public interface IBlogService
 {
-    BlogResponseModel CreateBlog(BlogDTO requestModel);
-    BlogResponseModel DeleteBlog(string id);
-    BlogModel GetBlog(string id);
-    List<BlogModel> GetBlogs();
-    BlogResponseModel UpdateBlog(BlogModel requestModel);
+    Task<BlogResponseModel> CreateBlog(BlogDTO requestModel);
+    Task<BlogResponseModel> DeleteBlog(string id);
+    Task<BlogModel> GetBlog(string id);
+    Task<List<BlogModel>> GetBlogs();
+    Task<BlogResponseModel> UpdateBlog(BlogModel requestModel);
     //BlogResponseModel UpsertBlog(BlogModel requestModel);
 }

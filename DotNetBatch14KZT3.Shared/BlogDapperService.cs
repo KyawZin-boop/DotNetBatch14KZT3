@@ -9,7 +9,7 @@ public class BlogDapperService : IBlogService
 {
     private readonly SqlConnectionStringBuilder _connectionBuilder = new SqlConnectionStringBuilder();
 
-    public BlogResponseModel CreateBlog(BlogDTO requestModel)
+    public async Task<BlogResponseModel> CreateBlog(BlogDTO requestModel)
     {
         string query = $@"INSERT INTO [dbo].[tbl_blog]
                             ([blog_title],[blog_author],[blog_content])
@@ -26,10 +26,10 @@ public class BlogDapperService : IBlogService
         return model;
     }
 
-    public BlogResponseModel DeleteBlog(string id)
+    public async Task<BlogResponseModel> DeleteBlog(string id)
     {
         using IDbConnection connection = new SqlConnection(_connectionBuilder.ConnectionString);
-        var result = connection.Execute($"delete from [dbo].[tbl_blog] where blog_id='{id}'");
+        var result = await connection.ExecuteAsync($"delete from [dbo].[tbl_blog] where blog_id='{id}'");
 
         string message = result > 0 ? "Delete Success." : "Delete Fail!";
         BlogResponseModel model = new BlogResponseModel();
@@ -39,12 +39,12 @@ public class BlogDapperService : IBlogService
         return model;
     }
 
-    public BlogModel GetBlog(string id)
+    public async Task<BlogModel> GetBlog(string id)
     {
-        string query = "select * from tbl_blog where blog_id=@blog_id with (nolock)";
+        string query = $"select * from tbl_blog where blog_id=@blog_id with (nolock)";
 
         using IDbConnection connection = new SqlConnection(_connectionBuilder.ConnectionString);
-        var item = connection.QueryFirstOrDefault(query, new BlogModel
+        var item = await connection.QueryFirstOrDefaultAsync(query, new BlogModel
         {
             blog_id = id
         });
@@ -52,19 +52,19 @@ public class BlogDapperService : IBlogService
         return item!;
     }
 
-    public List<BlogModel> GetBlogs()
+    public async Task<List<BlogModel>> GetBlogs()
     {
         using IDbConnection connection = new SqlConnection(_connectionBuilder.ConnectionString);
-        List<BlogModel> lst = connection.Query<BlogModel>("select * from tbl_blog with (nolock)").ToList();
+        List<BlogModel> lst = (await connection.QueryAsync<BlogModel>("select * from tbl_blog with (nolock)")).ToList();
 
         return lst;
     }
 
-    public BlogResponseModel UpdateBlog(BlogModel requestModel)
+    public async Task<BlogResponseModel> UpdateBlog(BlogModel requestModel)
     {
         BlogResponseModel model = new BlogResponseModel();
 
-        var item = GetBlog(requestModel.blog_id);
+        var item = await GetBlog(requestModel.blog_id);
         if (item is null)
         {
             model.IsSuccess = false;
@@ -91,7 +91,7 @@ public class BlogDapperService : IBlogService
                         WHERE blog_id = @blog_id";
 
         using IDbConnection db = new SqlConnection(_connectionBuilder.ConnectionString);
-        var result = db.Execute(query, requestModel);
+        var result = await db.ExecuteAsync(query, requestModel);
 
         string message = result > 0 ? "Update Success." : "Update Fail!";
         model.IsSuccess = result > 0;

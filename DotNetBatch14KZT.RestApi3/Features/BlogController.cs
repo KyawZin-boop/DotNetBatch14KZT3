@@ -20,7 +20,7 @@ namespace DotNetBatch14KZT.RestApi3.Features
         {
             try
             {
-                var lst = _blogService.GetBlogs();
+                var lst = _blogService.GetBlogsAsync();
                 BlogListResponseModel model = new BlogListResponseModel()
                 {
                     IsSuccess = true,
@@ -118,7 +118,7 @@ namespace DotNetBatch14KZT.RestApi3.Features
             try
             {
                 requestModel.blog_id = id;
-                var model = _blogService.UpdateBlog(requestModel);
+                var model = _blogService.UpdateBlogAsync(requestModel);
                 if (!model.IsSuccess)
                 {
                     return BadRequest(model);
