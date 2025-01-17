@@ -2,7 +2,7 @@
 	<p class="bg-success border rounded text-center text-white">@TempData["Message"]</p>
 	<h1 class="text-center my-3">Blog Page</h1>
 
-	<a href="/Blog/Create"><button class="btn btn-primary mb-3">Add New Blog</button></a>
+	<a href="/BlogAjax/CreateAjax"><button class="btn btn-primary mb-3">Add New Blog</button></a>
 	<table class="table table-striped table-bordered">
 		<thead>
 			<tr>
@@ -14,7 +14,6 @@
 			</tr>
 		</thead>
 		<tbody class="blogTable">
-			
 		</tbody>
 	</table>
 </div>
@@ -28,26 +27,52 @@
 				success: function(data) {
 					$.each(data, function(index, item){
 						$(".blogTable").append(
-						'<tr>'+
-							'<td>'+(++index)+'</td>'+
-							'<td>'+item.blog_title+'</td>'+
-							'<td>'+item.blog_author+'</td>'+
-							'<td>'+item.blog_content+'</td>'+
-							'<td>'+
-							'<div class="d-flex justify-content-evenly">'+
-							'<a href="/Blog/Edit/'+item.blog_id+'"><button class="btn btn-warning edit-btn">Edit</button></a>'+
-							'<a href="/Blog/Delete/'+item.blog_id+'"><button class="btn btn-danger delete-btn">Delete</button></a>'+
-							'</div>'+
-							'</td>'+
-						'</tr>'
+						`<tr>
+							<td>${++index}</td>
+							<td>${item.blog_title}</td>
+							<td>${item.blog_author}</td>
+							<td>${item.blog_content}</td>
+							<td>
+								<div class="d-flex justify-content-evenly">
+								<a href="/BlogAjax/EditBlogAjax/${item.blog_id}"><button class="btn btn-warning edit-btn">Edit</button></a>
+								<button class="btn btn-danger delete-btn" data-id=${item.blog_id}>Delete</button></a>
+								</div>
+							</td>
+						</tr>`
 						);
 					});
 				},
 				error: function(ex) {
 					var r = jQuery.parseJSON(response.responseText);
-					alert("Message: " + r.Message);
+					Swal.fire({
+						icon: "error",
+						title: r.Message,
+					});
 				}
 			});
+			bindDeleteBtn();
 		});
+		function bindDeleteBtn(){
+			$('.delete-btn').click(() => {
+				let blog_id = $(this).data('id');
+				console.log(blog_id);
+				$.ajax({
+					url: `/BlogAjax/DeleteBlogAjax/${blog_id}`,
+					type: 'Get',
+					success: function(data) {
+						Swal.fire({
+							icon: "success",
+							title: data.Message,
+						});
+					},
+					error: function(data) {
+						Swal.fire({
+							icon: "error",
+							title: data.Message,
+						});
+					}
+				});
+			});
+		}
 	</script>
 }

@@ -1,0 +1,52 @@
+﻿@model BlogModel
+
+
+<div class="container">
+	<h1 class="text-center my-3">Add A New Blog</h1>
+
+	<div>
+		<label class="form-label">Title</label>
+		<input class="form-control blog_title" />
+		<label class="form-label">Author</label>
+		<input class="form-control blog_author" />
+		<label class="form-label">Content</label>
+		<input class="form-control blog_content" />
+		<button class="btn btn-outline-success mt-3 add-btn">Add Blog</button>
+	</div>
+</div>
+
+@section scripts
+{
+	<script>
+		$(document).ready(() => {
+			$('.add-btn').click(() => {
+				let blog = {
+					blog_title: $('.blog_title').val(),
+					blog_author: $('.blog_author').val(),
+					blog_content: $('.blog_content').val()
+				};
+				console.log(blog);
+				$.ajax({
+					url: '/BlogAjax/Save',
+					type: 'Post',
+					data: blog,
+					success: function(response){
+						Swal.fire({
+							icon: "success",
+							title: response,
+						});
+						$('.blog_title').val('');
+						$('.blog_author').val('');
+						$('.blog_content').val('');
+					},
+					error: function(ex) {
+							Swal.fire({
+								  icon: "error",
+								  title: "Fail to Add!",
+							 });
+					}
+				});
+			});
+		});
+	</script>
+}
