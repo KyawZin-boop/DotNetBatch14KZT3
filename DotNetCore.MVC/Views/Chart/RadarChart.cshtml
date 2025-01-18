@@ -1,0 +1,50 @@
+﻿@model RadarChartModel
+@using Newtonsoft.Json;
+
+<div id="radarChartContainer">
+    <canvas id="radarChart"></canvas>
+</div>
+
+@section Scripts {
+    <script>
+        const labels = @Html.Raw(JsonConvert.SerializeObject(Model.Labels));
+        const datasets = @Html.Raw(JsonConvert.SerializeObject(Model.Datasets));
+
+        const config = {
+            type: 'radar',
+            data: {
+                labels: labels,
+                datasets: datasets.map(dataset => ({
+                    label: dataset.Label,
+                    data: dataset.Data,
+                    borderColor: dataset.BorderColor,
+                    backgroundColor: dataset.BackgroundColor,
+                }))
+            },
+            options: {
+                plugins: {
+                    filler: {
+                        propagate: false
+                    }
+                },
+                interaction: {
+                    intersect: false
+                },
+                scales: {
+                    r: {
+                        angleLines: {
+                            display: true
+                        },
+                        suggestedMin: 0,
+                        suggestedMax: 20
+                    }
+                }
+            }
+        };
+
+        const radarChart = new Chart(
+            document.getElementById('radarChart'),
+            config
+        );
+    </script>
+}

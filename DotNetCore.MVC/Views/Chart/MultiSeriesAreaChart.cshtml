@@ -1,0 +1,51 @@
+﻿@model AreaChartModel
+@using Newtonsoft.Json;
+
+<div id="chart"></div>
+
+@section scripts {
+    <script>
+        const series = @(Html.Raw(JsonConvert.SerializeObject(Model.Series)));
+        const categories = @(Html.Raw(JsonConvert.SerializeObject(Model.Categories)));
+
+        var options = {
+            chart: {
+                type: 'area',
+                height: 350,
+                stacked: true,
+                toolbar: {
+                    show: true
+                }
+            },
+            series: series.map(s => ({ name: s.Name, data: s.Data })),
+            xaxis: {
+                categories: categories,
+                title: {
+                    text: "Dates"
+                }
+            },
+            yaxis: {
+                title: {
+                    text: "Temperature (°C)"
+                }
+            },
+            dataLabels: {
+                enabled: false
+            },
+            stroke: {
+                curve: 'smooth'
+            },
+            legend: {
+                position: 'top',
+                horizontalAlign: 'left'
+            },
+            tooltip: {
+                shared: true
+            },
+            colors: ['#008FFB', '#00E396'] // Add more colors for additional series
+        };
+
+        var chart = new ApexCharts(document.querySelector("#chart"), options);
+        chart.render();
+    </script>
+}

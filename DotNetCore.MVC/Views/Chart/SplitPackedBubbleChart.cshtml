@@ -1,0 +1,74 @@
+﻿@model List<PackedBubbleSeries>
+@using Newtonsoft.Json
+
+<div id="container"></div>
+
+@section Scripts {
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/highcharts-more.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+    <script src="https://code.highcharts.com/modules/networkgraph.js"></script>
+    <script src="https://code.highcharts.com/modules/packed-bubble.js"></script>
+
+    <script>
+        const data = @Html.Raw(JsonConvert.SerializeObject(Model));
+
+        Highcharts.chart('container', {
+            chart: {
+                type: 'packedbubble',
+                height: '100%'
+            },
+            title: {
+                text: 'Carbon emissions around the world (2022)',
+                align: 'left'
+            },
+            subtitle: {
+                text: 'Source: <a href="https://en.wikipedia.org/wiki/List_of_countries_by_carbon_dioxide_emissions" target="_blank">Wikipedia</a>',
+                align: 'left'
+            },
+            tooltip: {
+                useHTML: true,
+                pointFormat: '<b>{point.name}:</b> {point.value}m CO<sub>2</sub>'
+            },
+            plotOptions: {
+                packedbubble: {
+                    minSize: '20%',
+                    maxSize: '100%',
+                    zMin: 0,
+                    zMax: 1000,
+                    layoutAlgorithm: {
+                        gravitationalConstant: 0.05,
+                        splitSeries: true,
+                        seriesInteraction: false,
+                        dragBetweenSeries: true,
+                        parentNodeLimit: true
+                    },
+                    dataLabels: {
+                        enabled: true,
+                        format: '{point.name}',
+                        filter: {
+                            property: 'y',
+                            operator: '>',
+                            value: 250
+                        },
+                        style: {
+                            color: 'black',
+                            textOutline: 'none',
+                            fontWeight: 'normal'
+                        }
+                    }
+                }
+            },
+            series: data.map(series => ({
+                name: series.Name,
+                data: series.Data.map(point => ({
+                    name: point.Name,
+                    value: point.Value
+                }))
+            }))
+        });
+    </script>
+}
+

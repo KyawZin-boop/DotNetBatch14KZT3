@@ -5,7 +5,7 @@ namespace DotNetCore.MVC.Controllers
 {
     public class ApexChartController : Controller
     {
-        public IActionResult PieChat()
+        public IActionResult PieChart()
         {
             PieChartModel model = new PieChartModel
             {

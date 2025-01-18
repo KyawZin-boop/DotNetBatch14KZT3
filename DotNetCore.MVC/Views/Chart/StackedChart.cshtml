@@ -1,0 +1,59 @@
+﻿@model StackedChartModel
+@using Newtonsoft.Json;
+
+@{
+    var seriesData = Model.Series;
+}
+
+<div id="chart"></div>
+
+@section scripts {
+    <script>
+        // Server-side series data (serialized to JSON)
+        const seriesData = @Html.Raw(JsonConvert.SerializeObject(seriesData));
+        console.log(seriesData);
+
+                var options = {
+            series: seriesData, // Pass the validated series data
+            chart: {
+                type: 'area',
+                height: 350,
+                stacked: true,
+                events: {
+                    selection: function (chart, e) {
+                        console.log(chart);
+                        console.log(new Date(e.xaxis.min));
+                    }
+                },
+            },
+            colors: ['#008FFB', '#00E396', '#CED4DC'],
+            dataLabels: {
+                enabled: false
+            },
+            stroke: {
+                curve: 'smooth'
+            },
+            fill: {
+                type: 'gradient',
+                gradient: {
+                    opacityFrom: 0.6,
+                    opacityTo: 0.8,
+                }
+            },
+            legend: {
+                position: 'top',
+                horizontalAlign: 'left'
+            },
+            xaxis: {
+                type: 'datetime', // Ensure this is correct
+                labels: {
+                    datetimeUTC: false // Adjust for local time if needed
+                }
+            },
+        };
+
+
+        var chart = new ApexCharts(document.querySelector("#chart"), options);
+        chart.render();
+    </script>
+}
